@@ -22,10 +22,7 @@ class TabBarVC: UITabBarController {
         let navHome = UINavigationController(rootViewController: homeVC)
         
         navHome.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "person"), tag: 1)
-        
         setViewControllers([navHome], animated: true)
-        
-        
     }
     
 
