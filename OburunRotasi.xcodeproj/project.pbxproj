@@ -15,6 +15,8 @@
 		D41FEE892AD6BDF100B1F284 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41FEE882AD6BDF100B1F284 /* TabBarVC.swift */; };
 		D41FEE8C2AD6D10900B1F284 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41FEE8B2AD6D10900B1F284 /* APICaller.swift */; };
 		D41FEE8F2AD6D1A700B1F284 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D41FEE8E2AD6D1A700B1F284 /* Alamofire */; };
+		D451A27B2AD71496002BD65B /* YemeklerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451A27A2AD71496002BD65B /* YemeklerResponse.swift */; };
+		D451A27D2AD71C2C002BD65B /* SepetKayitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451A27C2AD71C2C002BD65B /* SepetKayitModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		D41E373C2AD6A35F00E4CCCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D41FEE882AD6BDF100B1F284 /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
 		D41FEE8B2AD6D10900B1F284 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
+		D451A27A2AD71496002BD65B /* YemeklerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YemeklerResponse.swift; sourceTree = "<group>"; };
+		D451A27C2AD71C2C002BD65B /* SepetKayitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SepetKayitModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +64,9 @@
 		D41E372D2AD6A35E00E4CCCC /* OburunRotasi */ = {
 			isa = PBXGroup;
 			children = (
-				D41FEE8A2AD6D0F800B1F284 /* WebServices */,
 				D41FEE832AD6BD6500B1F284 /* Resources */,
+				D451A2772AD7147A002BD65B /* Models */,
+				D41FEE8A2AD6D0F800B1F284 /* WebServices */,
 				D41FEE842AD6BD7900B1F284 /* Views */,
 				D41E373C2AD6A35F00E4CCCC /* Info.plist */,
 			);
@@ -110,6 +115,15 @@
 				D41FEE8B2AD6D10900B1F284 /* APICaller.swift */,
 			);
 			path = WebServices;
+			sourceTree = "<group>";
+		};
+		D451A2772AD7147A002BD65B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D451A27A2AD71496002BD65B /* YemeklerResponse.swift */,
+				D451A27C2AD71C2C002BD65B /* SepetKayitModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,8 +202,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D451A27B2AD71496002BD65B /* YemeklerResponse.swift in Sources */,
 				D41E37332AD6A35E00E4CCCC /* HomeVC.swift in Sources */,
 				D41E372F2AD6A35E00E4CCCC /* AppDelegate.swift in Sources */,
+				D451A27D2AD71C2C002BD65B /* SepetKayitModel.swift in Sources */,
 				D41FEE892AD6BDF100B1F284 /* TabBarVC.swift in Sources */,
 				D41FEE8C2AD6D10900B1F284 /* APICaller.swift in Sources */,
 				D41E37312AD6A35E00E4CCCC /* SceneDelegate.swift in Sources */,

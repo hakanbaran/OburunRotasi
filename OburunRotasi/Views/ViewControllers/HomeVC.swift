@@ -29,7 +29,6 @@ class HomeVC: UIViewController {
     
     @objc func press() {
         print("BASSSS")
-        APICaller.shared.getYemekler()
         
     }
     
