@@ -30,6 +30,8 @@ class HomeVC: UIViewController {
     @objc func press() {
         print("BASSSS")
         
+        APICaller.shared.sepettekiYemekleriCek(kullaniciAdi: "admin")
+         
     }
     
     override func viewDidLayoutSubviews() {

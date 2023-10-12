@@ -15,7 +15,7 @@ class APICaller {
     static let shared = APICaller()
     
     
-    public func getYemekler(completion: @escaping (Result<[Yemekler], Error>) -> ()) {
+    public func tumYemekler(completion: @escaping (Result<[Yemekler], Error>) -> ()) {
         guard let yemekAPIURL = URL(string: "http://kasimadalan.pe.hu/yemekler/tumYemekleriGetir.php") else {
             return
         }
@@ -35,12 +35,13 @@ class APICaller {
     }
     
     
-    func veriKaydet(yemekAdi: String, yemekResimAdi: String, yemekFiyat: Int, yemekSiparisAdet: Int, kullaniciAdi: String) {
+    func sepeteYemekKaydet(yemekAdi: String, yemekResimAdi: String, yemekFiyat: Int, yemekSiparisAdet: Int, kullaniciAdi: String) {
         
         
         guard let url = URL(string: "http://kasimadalan.pe.hu/yemekler/sepeteYemekEkle.php") else {
                     return
                 }
+        
         let parameters: [String: Any] = [
             "yemek_adi": yemekAdi,
             "yemek_resim_adi": yemekResimAdi,
@@ -49,52 +50,74 @@ class APICaller {
             "kullanici_adi": kullaniciAdi
         ]
         
-        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
-            .response { response in
-                switch response.result {
-                case .success(let value):
-                    print("Başarılı cevap: \(value)")
-                    // Burada işlem başarılı olduğunda ne yapılması gerektiğini tanımlayabilirsiniz.
-                case .failure(let error):
-                    print("Hata: \(error)")
-                    // Hata durumunda ne yapılması gerektiğini tanımlayabilirsiniz.
+        AF.request(url, method: .post, parameters: parameters).response { response in
+                
+            if let data = response.data {
+                do {
+                    let result = try JSONSerialization.jsonObject(with: data)
+                    print(result)
+                } catch {
+                    print(error.localizedDescription)
                 }
+            }
         }
     }
-}
-
-struct SepetYemek {
-    let sepetYemekID: String
-    let yemekAdi: String
-    let yemekResimAdi: String
-    let yemekFiyat: String
-    let yemekSiparisAdet: String
-    let kullaniciAdi: String
-
-    init?(json: [String: Any]) {
-        guard
-            let sepetYemekID = json["sepet_yemek_id"] as? String,
-            let yemekAdi = json["yemek_adi"] as? String,
-            let yemekResimAdi = json["yemek_resim_adi"] as? String,
-            let yemekFiyat = json["yemek_fiyat"] as? String,
-            let yemekSiparisAdet = json["yemek_siparis_adet"] as? String,
-            let kullaniciAdi = json["kullanici_adi"] as? String
-        else {
-            return nil
+    
+    func sepettekiYemekleriCek(kullaniciAdi: String) {
+        
+        guard let url = URL(string: "http://kasimadalan.pe.hu/yemekler/sepettekiYemekleriGetir.php") else {
+            return
         }
-
-        self.sepetYemekID = sepetYemekID
-        self.yemekAdi = yemekAdi
-        self.yemekResimAdi = yemekResimAdi
-        self.yemekFiyat = yemekFiyat
-        self.yemekSiparisAdet = yemekSiparisAdet
-        self.kullaniciAdi = kullaniciAdi
+        let parameters: [String: Any] = [
+            "kullanici_adi": kullaniciAdi
+        ]
+        
+        AF.request(url, method: .post, parameters: parameters).response { response in
+            if let data = response.data {
+                do {
+                    let result = try JSONSerialization.jsonObject(with: data)
+                    print(result)
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
+        }
     }
+    
+    func sepettekiYekeleriSil(sepet_yemek_id: Int, kullanici_adi: String) {
+        
+        guard let url = URL(string: "http://kasimadalan.pe.hu/yemekler/sepettenYemekSil.php") else {
+            return
+        }
+        
+        let parameters: [String: Any] = [
+            "kullanici_adi": kullanici_adi,
+            "sepet_yemek_id": sepet_yemek_id
+        ]
+        
+        AF.request(url, method: .post, parameters: parameters).response { response in
+            
+            if let data = response.data {
+                
+                do {
+                    let result = try JSONSerialization.jsonObject(with: data)
+                    
+                    print(result)
+                    
+                } catch {
+                    print(error.localizedDescription)
+                }
+                
+                
+            }
+            
+            
+            
+        }
+        
+        
+        
+    }
+    
+    
 }
-
-
-
-    
-    
-    
-
