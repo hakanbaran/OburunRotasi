@@ -12,7 +12,6 @@ struct KayitSepetResponse: Codable {
     var success: Int?
 }
 
-
 struct KayitSepet: Codable {
     var yemek_adi: String?
     var yemek_resim_adi: String?

@@ -17,6 +17,15 @@
 		D41FEE8F2AD6D1A700B1F284 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D41FEE8E2AD6D1A700B1F284 /* Alamofire */; };
 		D451A27B2AD71496002BD65B /* YemeklerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451A27A2AD71496002BD65B /* YemeklerResponse.swift */; };
 		D451A27D2AD71C2C002BD65B /* SepetKayitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451A27C2AD71C2C002BD65B /* SepetKayitModel.swift */; };
+		D451A27F2AD83746002BD65B /* FavoriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451A27E2AD83746002BD65B /* FavoriteVC.swift */; };
+		D451A2812AD8375A002BD65B /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451A2802AD8375A002BD65B /* ProfileVC.swift */; };
+		D4769DCB2AD9146A0007AC00 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = D4769DCA2AD9146A0007AC00 /* SDWebImage */; };
+		D4769DCD2AD9146A0007AC00 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D4769DCC2AD9146A0007AC00 /* SDWebImageMapKit */; };
+		D4769DD02AD928AB0007AC00 /* HomeFoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4769DCF2AD928AB0007AC00 /* HomeFoodCell.swift */; };
+		D4769DD22AD928EF0007AC00 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4769DD12AD928EF0007AC00 /* UIColorExtension.swift */; };
+		D4769DDD2ADACC830007AC00 /* IndirimCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4769DDC2ADACC830007AC00 /* IndirimCollectionCell.swift */; };
+		D4769DDF2ADAF7C70007AC00 /* KategoriCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4769DDE2ADAF7C70007AC00 /* KategoriCollectionCell.swift */; };
+		D4769DE22ADAFCDC0007AC00 /* HomeVKategoriView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4769DE12ADAFCDC0007AC00 /* HomeVKategoriView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +40,13 @@
 		D41FEE8B2AD6D10900B1F284 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		D451A27A2AD71496002BD65B /* YemeklerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YemeklerResponse.swift; sourceTree = "<group>"; };
 		D451A27C2AD71C2C002BD65B /* SepetKayitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SepetKayitModel.swift; sourceTree = "<group>"; };
+		D451A27E2AD83746002BD65B /* FavoriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVC.swift; sourceTree = "<group>"; };
+		D451A2802AD8375A002BD65B /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		D4769DCF2AD928AB0007AC00 /* HomeFoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFoodCell.swift; sourceTree = "<group>"; };
+		D4769DD12AD928EF0007AC00 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		D4769DDC2ADACC830007AC00 /* IndirimCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndirimCollectionCell.swift; sourceTree = "<group>"; };
+		D4769DDE2ADAF7C70007AC00 /* KategoriCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KategoriCollectionCell.swift; sourceTree = "<group>"; };
+		D4769DE12ADAFCDC0007AC00 /* HomeVKategoriView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVKategoriView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +54,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4769DCB2AD9146A0007AC00 /* SDWebImage in Frameworks */,
+				D4769DCD2AD9146A0007AC00 /* SDWebImageMapKit in Frameworks */,
 				D41FEE8F2AD6D1A700B1F284 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -64,6 +82,7 @@
 		D41E372D2AD6A35E00E4CCCC /* OburunRotasi */ = {
 			isa = PBXGroup;
 			children = (
+				D4769DCE2AD9285E0007AC00 /* Extensions */,
 				D41FEE832AD6BD6500B1F284 /* Resources */,
 				D451A2772AD7147A002BD65B /* Models */,
 				D41FEE8A2AD6D0F800B1F284 /* WebServices */,
@@ -87,6 +106,7 @@
 		D41FEE842AD6BD7900B1F284 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D4769DE02ADAFCC50007AC00 /* Views */,
 				D41FEE862AD6BD8D00B1F284 /* Cells */,
 				D41FEE852AD6BD8400B1F284 /* ViewControllers */,
 			);
@@ -97,6 +117,8 @@
 			isa = PBXGroup;
 			children = (
 				D41E37322AD6A35E00E4CCCC /* HomeVC.swift */,
+				D451A27E2AD83746002BD65B /* FavoriteVC.swift */,
+				D451A2802AD8375A002BD65B /* ProfileVC.swift */,
 				D41FEE882AD6BDF100B1F284 /* TabBarVC.swift */,
 			);
 			path = ViewControllers;
@@ -105,6 +127,9 @@
 		D41FEE862AD6BD8D00B1F284 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				D4769DCF2AD928AB0007AC00 /* HomeFoodCell.swift */,
+				D4769DDC2ADACC830007AC00 /* IndirimCollectionCell.swift */,
+				D4769DDE2ADAF7C70007AC00 /* KategoriCollectionCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -126,6 +151,22 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		D4769DCE2AD9285E0007AC00 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D4769DD12AD928EF0007AC00 /* UIColorExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D4769DE02ADAFCC50007AC00 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D4769DE12ADAFCDC0007AC00 /* HomeVKategoriView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -144,6 +185,8 @@
 			name = OburunRotasi;
 			packageProductDependencies = (
 				D41FEE8E2AD6D1A700B1F284 /* Alamofire */,
+				D4769DCA2AD9146A0007AC00 /* SDWebImage */,
+				D4769DCC2AD9146A0007AC00 /* SDWebImageMapKit */,
 			);
 			productName = OburunRotasi;
 			productReference = D41E372B2AD6A35E00E4CCCC /* OburunRotasi.app */;
@@ -175,6 +218,7 @@
 			mainGroup = D41E37222AD6A35E00E4CCCC;
 			packageReferences = (
 				D41FEE8D2AD6D1A700B1F284 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				D4769DC92AD9146A0007AC00 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = D41E372C2AD6A35E00E4CCCC /* Products */;
 			projectDirPath = "";
@@ -205,8 +249,15 @@
 				D451A27B2AD71496002BD65B /* YemeklerResponse.swift in Sources */,
 				D41E37332AD6A35E00E4CCCC /* HomeVC.swift in Sources */,
 				D41E372F2AD6A35E00E4CCCC /* AppDelegate.swift in Sources */,
+				D4769DDF2ADAF7C70007AC00 /* KategoriCollectionCell.swift in Sources */,
+				D451A2812AD8375A002BD65B /* ProfileVC.swift in Sources */,
 				D451A27D2AD71C2C002BD65B /* SepetKayitModel.swift in Sources */,
+				D451A27F2AD83746002BD65B /* FavoriteVC.swift in Sources */,
+				D4769DDD2ADACC830007AC00 /* IndirimCollectionCell.swift in Sources */,
+				D4769DD02AD928AB0007AC00 /* HomeFoodCell.swift in Sources */,
 				D41FEE892AD6BDF100B1F284 /* TabBarVC.swift in Sources */,
+				D4769DE22ADAFCDC0007AC00 /* HomeVKategoriView.swift in Sources */,
+				D4769DD22AD928EF0007AC00 /* UIColorExtension.swift in Sources */,
 				D41FEE8C2AD6D10900B1F284 /* APICaller.swift in Sources */,
 				D41E37312AD6A35E00E4CCCC /* SceneDelegate.swift in Sources */,
 			);
@@ -433,6 +484,14 @@
 				minimumVersion = 5.8.0;
 			};
 		};
+		D4769DC92AD9146A0007AC00 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.18.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -440,6 +499,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D41FEE8D2AD6D1A700B1F284 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		D4769DCA2AD9146A0007AC00 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4769DC92AD9146A0007AC00 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		D4769DCC2AD9146A0007AC00 /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4769DC92AD9146A0007AC00 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImageMapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
