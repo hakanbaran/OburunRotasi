@@ -12,8 +12,9 @@ class IndirimCollectionCell: UICollectionViewCell {
     static let identifier = "IndirimCollectionCell"
     
     let imageView: UIImageView = {
-            let imageView = UIImageView()
-            imageView.contentMode = .scaleAspectFit
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        
             return imageView
         }()
         
@@ -22,6 +23,10 @@ class IndirimCollectionCell: UICollectionViewCell {
             
             contentView.addSubview(imageView)
             imageView.frame = contentView.bounds
+            
+            
+            
+            
             
         }
         

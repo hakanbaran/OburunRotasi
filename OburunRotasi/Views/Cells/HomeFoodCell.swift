@@ -25,8 +25,8 @@ class HomeFoodCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        let width = contentView.frame.width
-        let height = contentView.frame.height
+//        let width = contentView.frame.width
+//        let height = contentView.frame.height
     }
     
 }

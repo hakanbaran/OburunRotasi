@@ -12,10 +12,16 @@ import SDWebImage
 enum BrowseSectionType {
     case indirim // 1
     case kategori // 2
+    
+    var title: String {
+        switch self {
+        case .indirim:
+            return "İndirimdeki Ürünler"
+        case .kategori:
+            return "Kategoriler"
+        }
+    }
 }
-
-
-
 
 class HomeVC: UIViewController {
     
@@ -63,14 +69,9 @@ class HomeVC: UIViewController {
         return searchBar
     }()
     
-    private let indirimLabel: UILabel = {
-        let label = UILabel()
-        label.text = "İndirimler"
-        label.font = .systemFont(ofSize: 24, weight: .semibold)
-        return label
-    }()
-    
     var imageArray = [UIImage]()
+    
+    var imageArray2 = [UIImage]()
     
     
     
@@ -79,6 +80,9 @@ class HomeVC: UIViewController {
                                                                     collectionViewLayout: UICollectionViewCompositionalLayout { sectionIndex, _ -> NSCollectionLayoutSection in
         return HomeVC.createSectionLayout(section: sectionIndex)
     })
+    
+    
+    private var sections = [BrowseSectionType]()
     
     
     
@@ -95,8 +99,6 @@ class HomeVC: UIViewController {
         view.addSubview(searcBar)
         searcBar.delegate = self
         
-        view.addSubview(indirimLabel)
-        
         navigationController?.navigationBar.backgroundColor = .clear
         view.backgroundColor = UIColor(hex: "#0C1B3A")
         
@@ -106,8 +108,12 @@ class HomeVC: UIViewController {
         imageArray.append(UIImage(named: "fastFood")!)
         imageArray.append(UIImage(named: "fastFood")!)
         imageArray.append(UIImage(named: "fastFood")!)
+        imageArray.append(UIImage(named: "fastFood")!)
+        imageArray.append(UIImage(named: "fastFood")!)
         
         configureCollectionView()
+        
+        getData()
         
     }
     
@@ -129,11 +135,9 @@ class HomeVC: UIViewController {
         
         searcBar.frame = CGRect(x: width/20, y: height/8+width/20, width: width-width/10, height: width/8)
         
-        indirimLabel.frame = CGRect(x: width/20, y: height/8+width/8+width/20, width: width/3, height: height/20)
         
         
-        
-        collectionView.frame = CGRect(x: width/20, y: height/8+width/8+width/20+height/20, width: width-width/10, height: height/2)
+        collectionView.frame = CGRect(x: width/20, y: height/8+width/8+width/20+height/20, width: width-width/10, height: width/1.75)
         
         
         
@@ -145,38 +149,52 @@ class HomeVC: UIViewController {
         
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         
+        collectionView.register(IndirimCollectionCell.self, forCellWithReuseIdentifier: IndirimCollectionCell.identifier)
+        collectionView.register(KategoriCollectionCell.self, forCellWithReuseIdentifier: KategoriCollectionCell.identifier)
+        collectionView.register(TitleHeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TitleHeaderCollectionReusableView.identifier)
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        collectionView.backgroundColor = .systemBackground
+        collectionView.backgroundColor = .clear
         
         
     }
     
     
     
-  
+    
+    
+    func getData() {
+        sections.append(.indirim)
+        sections.append(.kategori)
+    }
+    
     
     private static func createSectionLayout(section: Int) -> NSCollectionLayoutSection {
+        
+        let supplementaryViews = [NSCollectionLayoutBoundarySupplementaryItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(0.08)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)]
         
         switch section {
             
         case 0:
             // ITEM
-            
             let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
             item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 4, bottom: 2, trailing: 4)
             
             
             // VERTICAL GROUP IN HORIZONTAL GROUP
-            let verticalGroup = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.33), heightDimension: .absolute(120)), repeatingSubitem: item, count: 1)
+            let verticalGroup = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .absolute(120)), repeatingSubitem: item, count: 1)
             
-            let horizontalGroup = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(360)), repeatingSubitem: verticalGroup, count: 3)
+            let horizontalGroup = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(120)), repeatingSubitem: verticalGroup, count: 2)
             
             // SECTION
             
             let section = NSCollectionLayoutSection(group: horizontalGroup)
             section.orthogonalScrollingBehavior = .continuous
+            
+            section.boundarySupplementaryItems = supplementaryViews
+            
             return section
             
         case 1:
@@ -184,21 +202,17 @@ class HomeVC: UIViewController {
             
             let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
             item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 4, bottom: 2, trailing: 4)
-            
-            
             // VERTICAL GROUP IN HORIZONTAL GROUP
-            let verticalGroup = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.33), heightDimension: .absolute(120)), repeatingSubitem: item, count: 1)
+            let verticalGroup = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.25), heightDimension: .absolute(60)), repeatingSubitem: item, count: 1)
             
-            let horizontalGroup = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(360)), repeatingSubitem: verticalGroup, count: 3)
+            let horizontalGroup = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(120)), repeatingSubitem: verticalGroup, count: 4)
             
             // SECTION
             
             let section = NSCollectionLayoutSection(group: horizontalGroup)
             section.orthogonalScrollingBehavior = .continuous
+            section.boundarySupplementaryItems = supplementaryViews
             return section
-            
-            
-            
             
         default:
             // ITEM
@@ -212,12 +226,7 @@ class HomeVC: UIViewController {
             let section = NSCollectionLayoutSection(group: group)
             return section
         }
-        
     }
-    
-    
-    
-    
 }
 
 
@@ -226,26 +235,67 @@ extension HomeVC: UISearchBarDelegate {
 }
 
 extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        
+        let type = sections[section]
+        
+        switch type {
+            
+        case .indirim:
+            return imageArray.count
+        case .kategori:
+            
+            return imageArray.count
+        }
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return sections.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         
-        if indexPath.section == 0 {
-            cell.backgroundColor = .green
-        } else if indexPath.section == 1 {
-            cell.backgroundColor = .blue
+        let type = sections[indexPath.section]
+        
+        switch type {
+            
+        case .indirim:
+            
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IndirimCollectionCell.identifier, for: indexPath) as? IndirimCollectionCell else {
+                return UICollectionViewCell()
+            }
+            cell.imageView.image = imageArray[indexPath.row]
+            return cell
+            
+        case .kategori:
+            
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: KategoriCollectionCell.identifier, for: indexPath) as? KategoriCollectionCell else {
+                return UICollectionViewCell()
+            }
+            cell.imageView.image = imageArray[indexPath.row]
+            return cell
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: TitleHeaderCollectionReusableView.identifier, for: indexPath) as? TitleHeaderCollectionReusableView, kind == UICollectionView.elementKindSectionHeader else {
+            return UICollectionReusableView()
         }
         
-        return cell
+        let section = indexPath.section
+        let title = sections[section].title
+        header.configure(with: title)
+        return header
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            scrollView.contentOffset.y = 0
+        }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
-    }
+    
+    
     
     
 }
