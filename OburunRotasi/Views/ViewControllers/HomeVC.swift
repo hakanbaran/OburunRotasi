@@ -25,6 +25,7 @@ enum BrowseSectionType {
 
 class HomeVC: UIViewController {
     
+    
     private let navigationBarView: UIView = {
         let view = UIView()
         view.backgroundColor = .blue
@@ -71,19 +72,22 @@ class HomeVC: UIViewController {
     
     var imageArray = [UIImage]()
     
-    var imageArray2 = [UIImage]()
-    
-    
-    
-    
     private var collectionView: UICollectionView = UICollectionView(frame: .zero,
                                                                     collectionViewLayout: UICollectionViewCompositionalLayout { sectionIndex, _ -> NSCollectionLayoutSection in
         return HomeVC.createSectionLayout(section: sectionIndex)
     })
     
-    
     private var sections = [BrowseSectionType]()
     
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.backgroundColor = .red
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        tableView.register(HomeFoodCell.self, forCellReuseIdentifier: HomeFoodCell.identifier)
+        
+        return tableView
+    }()
     
     
     override func viewDidLoad() {
@@ -102,8 +106,6 @@ class HomeVC: UIViewController {
         navigationController?.navigationBar.backgroundColor = .clear
         view.backgroundColor = UIColor(hex: "#0C1B3A")
         
-      
-        
         imageArray.append(UIImage(named: "fastFood")!)
         imageArray.append(UIImage(named: "fastFood")!)
         imageArray.append(UIImage(named: "fastFood")!)
@@ -114,6 +116,11 @@ class HomeVC: UIViewController {
         configureCollectionView()
         
         getData()
+        
+        view.addSubview(tableView)
+        
+        tableView.delegate = self
+        tableView.dataSource = self
         
     }
     
@@ -135,92 +142,83 @@ class HomeVC: UIViewController {
         
         searcBar.frame = CGRect(x: width/20, y: height/8+width/20, width: width-width/10, height: width/8)
         
-        
-        
         collectionView.frame = CGRect(x: width/20, y: height/8+width/8+width/20+height/20, width: width-width/10, height: width/1.75)
         
         
         
+//        tableView.frame = CGRect(x: width/20, y: height/8+width/8+width/10+height/20+width/1.75, width: width-width/10, height: 300)
+        
+        configureTableViewConstraints()
+        
+    }
+    
+    func configureTableViewConstraints() {
+        
+        let safeArea = view.safeAreaLayoutGuide
+        let width = view.frame.width
+        let height = view.frame.height
+        
+        let tableViewConstraints = [
+            tableView.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: width/20),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: width/20),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -width/20),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: width/20)
+        ]
+        
+        
+        NSLayoutConstraint.activate(tableViewConstraints)
+        
     }
     
     private func configureCollectionView() {
-        
         view.addSubview(collectionView)
-        
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
-        
         collectionView.register(IndirimCollectionCell.self, forCellWithReuseIdentifier: IndirimCollectionCell.identifier)
         collectionView.register(KategoriCollectionCell.self, forCellWithReuseIdentifier: KategoriCollectionCell.identifier)
         collectionView.register(TitleHeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TitleHeaderCollectionReusableView.identifier)
-        
         collectionView.delegate = self
         collectionView.dataSource = self
-        
         collectionView.backgroundColor = .clear
-        
-        
     }
-    
-    
-    
-    
     
     func getData() {
         sections.append(.indirim)
         sections.append(.kategori)
     }
     
-    
     private static func createSectionLayout(section: Int) -> NSCollectionLayoutSection {
-        
         let supplementaryViews = [NSCollectionLayoutBoundarySupplementaryItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(0.08)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)]
-        
         switch section {
-            
         case 0:
             // ITEM
             let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
             item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 4, bottom: 2, trailing: 4)
-            
-            
             // VERTICAL GROUP IN HORIZONTAL GROUP
             let verticalGroup = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .absolute(120)), repeatingSubitem: item, count: 1)
-            
             let horizontalGroup = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(120)), repeatingSubitem: verticalGroup, count: 2)
-            
             // SECTION
-            
             let section = NSCollectionLayoutSection(group: horizontalGroup)
             section.orthogonalScrollingBehavior = .continuous
-            
             section.boundarySupplementaryItems = supplementaryViews
-            
             return section
             
         case 1:
             // ITEM
-            
             let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
             item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 4, bottom: 2, trailing: 4)
             // VERTICAL GROUP IN HORIZONTAL GROUP
             let verticalGroup = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.25), heightDimension: .absolute(60)), repeatingSubitem: item, count: 1)
             
             let horizontalGroup = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(120)), repeatingSubitem: verticalGroup, count: 4)
-            
             // SECTION
-            
             let section = NSCollectionLayoutSection(group: horizontalGroup)
             section.orthogonalScrollingBehavior = .continuous
             section.boundarySupplementaryItems = supplementaryViews
             return section
-            
         default:
             // ITEM
-            
             let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
             item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 4, bottom: 2, trailing: 4)
-            
-            
             // VERTICAL GROUP IN HORIZONTAL GROUP
             let group = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(390)), repeatingSubitem: item, count: 1)
             let section = NSCollectionLayoutSection(group: group)
@@ -290,16 +288,54 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
         return header
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-            scrollView.contentOffset.y = 0
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//            scrollView.contentOffset.y = 0
+//        }
+}
+
+
+extension HomeVC: UITableViewDelegate, UITableViewDataSource {
+    
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return view.frame.width/2
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeFoodCell.identifier, for: indexPath) as? HomeFoodCell else {
+            return UITableViewCell()
         }
-    
-    
-    
+        
+        APICaller.shared.tumYemekler { result in
+            switch result {
+                
+            case .success(let yemekler):
+                let model = yemekler[indexPath.row]
+                let url = URL(string: "http://kasimadalan.pe.hu/yemekler/resimler/\(model.yemek_resim_adi)")
+                
+                cell.foodImage.sd_setImage(with: url)
+                
+            case .failure(let error):
+                
+                print(error.localizedDescription)
+                
+            }
+        }
+        
+//        let cell = UITableViewCell()
+        
+        return cell
+    }
     
     
 }
-
 
 
 
