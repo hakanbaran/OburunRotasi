@@ -67,6 +67,8 @@ class HeroHeaderUIView: UIView {
         return searchBar
     }()
     
+    
+    
     var imageArray = [UIImage]()
     
     private var collectionView: UICollectionView = UICollectionView(frame: .zero,
@@ -75,6 +77,15 @@ class HeroHeaderUIView: UIView {
     })
     
     private var sections = [BrowseSectionType]()
+    
+    private let yemeklerLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Tüm Yemekler"
+        label.font = .systemFont(ofSize: 22, weight: .regular)
+        label.textAlignment = .left
+        label.numberOfLines = 2
+        return label
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -85,6 +96,7 @@ class HeroHeaderUIView: UIView {
         navigationBarView.addSubview(appTittle)
         navigationBarView.addSubview(adressPin)
         navigationBarView.addSubview(adressLabel)
+        navigationBarView.addSubview(yemeklerLabel)
         
         addSubview(searcBar)
         searcBar.delegate = self
@@ -110,6 +122,9 @@ class HeroHeaderUIView: UIView {
         
         navigationBarView.frame = CGRect(x: 0, y: 0, width: width, height: height/8)
         configureConstraints()
+        
+        
+//        backgroundColor = .red
     }
     
     func configureConstraints() {
@@ -125,6 +140,8 @@ class HeroHeaderUIView: UIView {
         
         collectionView.frame = CGRect(x: width/20, y: width/4, width: width-width/10, height: width/1.75)
         
+        yemeklerLabel.frame = CGRect(x: width/15, y: width/4+collectionView.frame.height+width/30, width: width/2, height: height/20)
+        
         
         
     }
@@ -134,7 +151,7 @@ class HeroHeaderUIView: UIView {
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.register(IndirimCollectionCell.self, forCellWithReuseIdentifier: IndirimCollectionCell.identifier)
         collectionView.register(KategoriCollectionCell.self, forCellWithReuseIdentifier: KategoriCollectionCell.identifier)
-        collectionView.register(TitleHeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TitleHeaderCollectionReusableView.identifier)
+        collectionView.register(FoodHeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: FoodHeaderCollectionReusableView.identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = .clear
@@ -239,7 +256,7 @@ extension HeroHeaderUIView: UICollectionViewDelegate, UICollectionViewDataSource
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: TitleHeaderCollectionReusableView.identifier, for: indexPath) as? TitleHeaderCollectionReusableView, kind == UICollectionView.elementKindSectionHeader else {
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: FoodHeaderCollectionReusableView.identifier, for: indexPath) as? FoodHeaderCollectionReusableView, kind == UICollectionView.elementKindSectionHeader else {
             return UICollectionReusableView()
         }
         

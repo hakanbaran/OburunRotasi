@@ -11,13 +11,13 @@ class HomeFoodCell: UITableViewCell {
 
     static let identifier = "HomeFoodCell"
     
-     let foodImage : UIImageView = {
+    public let foodImage : UIImageView = {
         let image = UIImageView(image: UIImage(systemName: "person"))
         image.tintColor = .yellow
         return image
     }()
     
-    private let foodNameLabel : UILabel = {
+    public let foodNameLabel : UILabel = {
         
         let label = UILabel()
         label.text = "Pizza"
@@ -25,10 +25,6 @@ class HomeFoodCell: UITableViewCell {
         
         return label
     }()
-    
-    
-    
-    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -50,10 +46,13 @@ class HomeFoodCell: UITableViewCell {
         let width = contentView.frame.width
         let height = contentView.frame.height
         
-        foodImage.frame = CGRect(x: width/20, y: width/20, width: width/3, height: height/3)
-        foodNameLabel.frame = CGRect(x: width/20, y: width/10+width/3, width: width/3, height: height/3)
+        foodImage.frame = CGRect(x: width/20, y: width/20, width: width/4, height: width/4)
+        foodNameLabel.frame = CGRect(x: width / 2, y: height / 2, width: width / 2, height: height / 2)
+
         
     }
+    
+    
     
 }
 

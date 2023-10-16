@@ -25,7 +25,7 @@
 		D4769DD22AD928EF0007AC00 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4769DD12AD928EF0007AC00 /* UIColorExtension.swift */; };
 		D4769DDD2ADACC830007AC00 /* IndirimCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4769DDC2ADACC830007AC00 /* IndirimCollectionCell.swift */; };
 		D4769DDF2ADAF7C70007AC00 /* KategoriCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4769DDE2ADAF7C70007AC00 /* KategoriCollectionCell.swift */; };
-		D4769DE42ADB51AD0007AC00 /* TitleHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4769DE32ADB51AD0007AC00 /* TitleHeaderCollectionReusableView.swift */; };
+		D4769DE42ADB51AD0007AC00 /* FoodHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4769DE32ADB51AD0007AC00 /* FoodHeaderCollectionReusableView.swift */; };
 		D4769DE62ADB51F70007AC00 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4769DE52ADB51F70007AC00 /* UIViewExtension.swift */; };
 		D4FF51EA2ADD51E7006A8E10 /* HeroHeaderUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF51E92ADD51E7006A8E10 /* HeroHeaderUIView.swift */; };
 /* End PBXBuildFile section */
@@ -48,7 +48,7 @@
 		D4769DD12AD928EF0007AC00 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		D4769DDC2ADACC830007AC00 /* IndirimCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndirimCollectionCell.swift; sourceTree = "<group>"; };
 		D4769DDE2ADAF7C70007AC00 /* KategoriCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KategoriCollectionCell.swift; sourceTree = "<group>"; };
-		D4769DE32ADB51AD0007AC00 /* TitleHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		D4769DE32ADB51AD0007AC00 /* FoodHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		D4769DE52ADB51F70007AC00 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		D4FF51E92ADD51E7006A8E10 /* HeroHeaderUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroHeaderUIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -167,7 +167,7 @@
 		D4769DE02ADAFCC50007AC00 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D4769DE32ADB51AD0007AC00 /* TitleHeaderCollectionReusableView.swift */,
+				D4769DE32ADB51AD0007AC00 /* FoodHeaderCollectionReusableView.swift */,
 				D4FF51E92ADD51E7006A8E10 /* HeroHeaderUIView.swift */,
 			);
 			path = Views;
@@ -257,7 +257,7 @@
 				D451A27B2AD71496002BD65B /* YemeklerResponse.swift in Sources */,
 				D41E37332AD6A35E00E4CCCC /* HomeVC.swift in Sources */,
 				D41E372F2AD6A35E00E4CCCC /* AppDelegate.swift in Sources */,
-				D4769DE42ADB51AD0007AC00 /* TitleHeaderCollectionReusableView.swift in Sources */,
+				D4769DE42ADB51AD0007AC00 /* FoodHeaderCollectionReusableView.swift in Sources */,
 				D4769DDF2ADAF7C70007AC00 /* KategoriCollectionCell.swift in Sources */,
 				D451A2812AD8375A002BD65B /* ProfileVC.swift in Sources */,
 				D451A27D2AD71C2C002BD65B /* SepetKayitModel.swift in Sources */,

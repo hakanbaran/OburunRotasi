@@ -107,17 +107,7 @@ class APICaller {
                 } catch {
                     print(error.localizedDescription)
                 }
-                
-                
             }
-            
-            
-            
         }
-        
-        
-        
     }
-    
-    
 }
