@@ -33,8 +33,7 @@ class HomeFoodCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-//        contentView.backgroundColor = UIColor(hex: "#0C1B3A")
-        contentView.backgroundColor = .blue
+        contentView.backgroundColor = UIColor(hex: "#0C1B3A")
         
         
         contentView.addSubview(foodImage)
@@ -57,3 +56,5 @@ class HomeFoodCell: UITableViewCell {
     }
     
 }
+
+
