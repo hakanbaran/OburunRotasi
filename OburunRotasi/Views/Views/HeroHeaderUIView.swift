@@ -8,9 +8,8 @@
 import UIKit
 
 enum BrowseSectionType {
-    case indirim // 1
-    case kategori // 2
-    
+    case indirim
+    case kategori
     var title: String {
         switch self {
         case .indirim:
@@ -103,7 +102,6 @@ class HeroHeaderUIView: UIView {
         searcBar.delegate = self
         
         configureCollectionView()
-        
         configureKategoriIndirim()
         
         getData()
@@ -127,7 +125,6 @@ class HeroHeaderUIView: UIView {
         let turkName = "Türk Mutfağı"
         
         kategoriNameArray.append(turkName)
-        
         
         guard let tatli = UIImage(named: "tatlı") else { return }
         kategoriImageArray.append(tatli)
@@ -154,7 +151,6 @@ class HeroHeaderUIView: UIView {
         let kofteName = "Köfte"
         kategoriNameArray.append(kofteName)
         
-        
         guard let indirim_1 = UIImage(named: "indirim_1") else {return}
         indirimArray.append(indirim_1)
         
@@ -162,8 +158,6 @@ class HeroHeaderUIView: UIView {
         indirimArray.append(indirim_2)
         guard let indirim_3 = UIImage(named: "indirim_3") else {return}
         indirimArray.append(indirim_3)
-        
-        
     }
     
     
@@ -181,9 +175,6 @@ class HeroHeaderUIView: UIView {
         collectionView.frame = CGRect(x: width/20, y: width/4, width: width-width/10, height: width/1.75)
         
         yemeklerLabel.frame = CGRect(x: width/15, y: width/4+collectionView.frame.height+width/30, width: width/2, height: height/20)
-        
-        
-        
     }
     
     private func configureCollectionView() {
@@ -217,7 +208,6 @@ class HeroHeaderUIView: UIView {
             section.orthogonalScrollingBehavior = .continuous
             section.boundarySupplementaryItems = supplementaryViews
             return section
-            
         case 1:
             // ITEM
             let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
