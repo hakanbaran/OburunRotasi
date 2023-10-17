@@ -24,9 +24,10 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
+        view.backgroundColor = UIColor(hex: "#0C1B3A")
         tableView.delegate = self
         tableView.dataSource = self
-        headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.frame.width/1.18))
+        headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.frame.width/1.14))
         tableView.tableHeaderView = headerView
     }
     
@@ -62,7 +63,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view.frame.width/4+view.frame.width/20
+        return view.frame.height/6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -83,6 +84,9 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     
+    
+    
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let defaultOffset = view.safeAreaInsets.top
         let offset = scrollView.contentOffset.y + defaultOffset
@@ -95,9 +99,6 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.alpha = alpha
     }
-
-    
-    
 }
 
 

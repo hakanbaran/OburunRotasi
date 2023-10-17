@@ -91,6 +91,7 @@
 				D451A2772AD7147A002BD65B /* Models */,
 				D41FEE8A2AD6D0F800B1F284 /* WebServices */,
 				D41FEE842AD6BD7900B1F284 /* Views */,
+				D41FEE852AD6BD8400B1F284 /* ViewControllers */,
 				D41E373C2AD6A35F00E4CCCC /* Info.plist */,
 			);
 			path = OburunRotasi;
@@ -112,7 +113,6 @@
 			children = (
 				D4769DE02ADAFCC50007AC00 /* Views */,
 				D41FEE862AD6BD8D00B1F284 /* Cells */,
-				D41FEE852AD6BD8400B1F284 /* ViewControllers */,
 			);
 			path = Views;
 			sourceTree = "<group>";
