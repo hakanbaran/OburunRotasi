@@ -14,7 +14,7 @@ class HomeVC: UIViewController {
         let tableView = UITableView()
         tableView.backgroundColor = UIColor(hex: "#0C1B3A")
         tableView.separatorStyle = .none
-        tableView.register(HomeFoodCell.self, forCellReuseIdentifier: HomeFoodCell.identifier)
+        tableView.register(HomeVCTableViewCell.self, forCellReuseIdentifier: HomeVCTableViewCell.identifier)
         return tableView
     }()
     
@@ -27,7 +27,7 @@ class HomeVC: UIViewController {
         view.backgroundColor = UIColor(hex: "#0C1B3A")
         tableView.delegate = self
         tableView.dataSource = self
-        headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.frame.width/1.14))
+        headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.frame.width/1.1))
         tableView.tableHeaderView = headerView
     }
     
@@ -68,13 +68,19 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeFoodCell.identifier, for: indexPath) as? HomeFoodCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeVCTableViewCell.identifier, for: indexPath) as? HomeVCTableViewCell else {
             return UITableViewCell()
         }
         let model = yemeklerListesi[indexPath.row]
         let url = URL(string: "http://kasimadalan.pe.hu/yemekler/resimler/\(model.yemek_resim_adi)")
-        cell.foodImage.sd_setImage(with: url)
-        cell.foodNameLabel.text = model.yemek_adi
+        cell.yemekResim.sd_setImage(with: url)
+        cell.yemekIsimLabel.text = model.yemek_adi
+        
+        if let fiyat = model.yemek_fiyat {
+            cell.yemekFiyatLabel.text = "\(fiyat) ₺"
+        }
+        
+        
         return cell
     }
     
@@ -82,9 +88,6 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         
     }
-    
-    
-    
     
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

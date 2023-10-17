@@ -25,9 +25,6 @@ class IndirimCollectionCell: UICollectionViewCell {
             imageView.frame = contentView.bounds
             
             
-            
-            
-            
         }
         
         required init?(coder aDecoder: NSCoder) {

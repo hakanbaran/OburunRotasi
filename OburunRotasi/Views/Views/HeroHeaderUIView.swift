@@ -67,10 +67,6 @@ class HeroHeaderUIView: UIView {
         return searchBar
     }()
     
-    
-    
-    var imageArray = [UIImage]()
-    
     private var collectionView: UICollectionView = UICollectionView(frame: .zero,
                                                                     collectionViewLayout: UICollectionViewCompositionalLayout { sectionIndex, _ -> NSCollectionLayoutSection in
         return HeroHeaderUIView.createSectionLayout(section: sectionIndex)
@@ -87,6 +83,11 @@ class HeroHeaderUIView: UIView {
         return label
     }()
     
+    var kategoriImageArray = [UIImage]()
+    var kategoriNameArray = [String]()
+    
+    var indirimArray = [UIImage]()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -101,14 +102,9 @@ class HeroHeaderUIView: UIView {
         addSubview(searcBar)
         searcBar.delegate = self
         
-        imageArray.append(UIImage(named: "fastFood")!)
-        imageArray.append(UIImage(named: "fastFood")!)
-        imageArray.append(UIImage(named: "fastFood")!)
-        imageArray.append(UIImage(named: "fastFood")!)
-        imageArray.append(UIImage(named: "fastFood")!)
-        imageArray.append(UIImage(named: "fastFood")!)
-        
         configureCollectionView()
+        
+        configureKategoriIndirim()
         
         getData()
         
@@ -123,6 +119,53 @@ class HeroHeaderUIView: UIView {
         navigationBarView.frame = CGRect(x: 0, y: 0, width: width, height: height/8)
         configureConstraints()
     }
+    
+    func configureKategoriIndirim() {
+        
+        guard let turkMutfagi = UIImage(named: "baklava") else { return }
+        kategoriImageArray.append(turkMutfagi)
+        let turkName = "Türk Mutfağı"
+        
+        kategoriNameArray.append(turkName)
+        
+        
+        guard let tatli = UIImage(named: "tatlı") else { return }
+        kategoriImageArray.append(tatli)
+        let taliName = "Tatlılar"
+        kategoriNameArray.append(taliName)
+        
+        guard let icecek = UIImage(named: "icecek") else { return }
+        kategoriImageArray.append(icecek)
+        let icecekNAme = "İçeekler"
+        kategoriNameArray.append(icecekNAme)
+        
+        guard let dunya = UIImage(named: "dunya_mutfak") else { return }
+        kategoriImageArray.append(dunya)
+        let dunyaName = "Dünyadan"
+        kategoriNameArray.append(dunyaName)
+        
+        guard let tavuk = UIImage(named: "tavuk") else { return }
+        kategoriImageArray.append(tavuk)
+        let tavukName = "Tavuk/Balık"
+        kategoriNameArray.append(tavukName)
+        
+        guard let kofte = UIImage(named: "kofte") else { return }
+        kategoriImageArray.append(kofte)
+        let kofteName = "Köfte"
+        kategoriNameArray.append(kofteName)
+        
+        
+        guard let indirim_1 = UIImage(named: "indirim_1") else {return}
+        indirimArray.append(indirim_1)
+        
+        guard let indirim_2 = UIImage(named: "indirim_2") else {return}
+        indirimArray.append(indirim_2)
+        guard let indirim_3 = UIImage(named: "indirim_3") else {return}
+        indirimArray.append(indirim_3)
+        
+        
+    }
+    
     
     func configureConstraints() {
         
@@ -217,10 +260,10 @@ extension HeroHeaderUIView: UICollectionViewDelegate, UICollectionViewDataSource
         let type = sections[section]
         switch type {
         case .indirim:
-            return imageArray.count
+            return 3
         case .kategori:
             
-            return imageArray.count
+            return 6
         }
     }
     
@@ -239,7 +282,8 @@ extension HeroHeaderUIView: UICollectionViewDelegate, UICollectionViewDataSource
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IndirimCollectionCell.identifier, for: indexPath) as? IndirimCollectionCell else {
                 return UICollectionViewCell()
             }
-            cell.imageView.image = imageArray[indexPath.row]
+            cell.imageView.image = indirimArray[indexPath.item]
+            
             return cell
             
         case .kategori:
@@ -247,7 +291,10 @@ extension HeroHeaderUIView: UICollectionViewDelegate, UICollectionViewDataSource
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: KategoriCollectionCell.identifier, for: indexPath) as? KategoriCollectionCell else {
                 return UICollectionViewCell()
             }
-            cell.imageView.image = imageArray[indexPath.row]
+            
+            cell.imageView.image = kategoriImageArray[indexPath.item]
+            cell.label.text = kategoriNameArray[indexPath.item]
+            
             return cell
         }
     }

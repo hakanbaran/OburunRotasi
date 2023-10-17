@@ -21,7 +21,7 @@
 		D451A2812AD8375A002BD65B /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451A2802AD8375A002BD65B /* ProfileVC.swift */; };
 		D4769DCB2AD9146A0007AC00 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = D4769DCA2AD9146A0007AC00 /* SDWebImage */; };
 		D4769DCD2AD9146A0007AC00 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D4769DCC2AD9146A0007AC00 /* SDWebImageMapKit */; };
-		D4769DD02AD928AB0007AC00 /* HomeFoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4769DCF2AD928AB0007AC00 /* HomeFoodCell.swift */; };
+		D4769DD02AD928AB0007AC00 /* HomeVCTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4769DCF2AD928AB0007AC00 /* HomeVCTableViewCell.swift */; };
 		D4769DD22AD928EF0007AC00 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4769DD12AD928EF0007AC00 /* UIColorExtension.swift */; };
 		D4769DDD2ADACC830007AC00 /* IndirimCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4769DDC2ADACC830007AC00 /* IndirimCollectionCell.swift */; };
 		D4769DDF2ADAF7C70007AC00 /* KategoriCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4769DDE2ADAF7C70007AC00 /* KategoriCollectionCell.swift */; };
@@ -44,7 +44,7 @@
 		D451A27C2AD71C2C002BD65B /* SepetKayitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SepetKayitModel.swift; sourceTree = "<group>"; };
 		D451A27E2AD83746002BD65B /* FavoriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVC.swift; sourceTree = "<group>"; };
 		D451A2802AD8375A002BD65B /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
-		D4769DCF2AD928AB0007AC00 /* HomeFoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFoodCell.swift; sourceTree = "<group>"; };
+		D4769DCF2AD928AB0007AC00 /* HomeVCTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVCTableViewCell.swift; sourceTree = "<group>"; };
 		D4769DD12AD928EF0007AC00 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		D4769DDC2ADACC830007AC00 /* IndirimCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndirimCollectionCell.swift; sourceTree = "<group>"; };
 		D4769DDE2ADAF7C70007AC00 /* KategoriCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KategoriCollectionCell.swift; sourceTree = "<group>"; };
@@ -133,7 +133,7 @@
 			children = (
 				D4769DDC2ADACC830007AC00 /* IndirimCollectionCell.swift */,
 				D4769DDE2ADAF7C70007AC00 /* KategoriCollectionCell.swift */,
-				D4769DCF2AD928AB0007AC00 /* HomeFoodCell.swift */,
+				D4769DCF2AD928AB0007AC00 /* HomeVCTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -263,7 +263,7 @@
 				D451A27D2AD71C2C002BD65B /* SepetKayitModel.swift in Sources */,
 				D451A27F2AD83746002BD65B /* FavoriteVC.swift in Sources */,
 				D4769DDD2ADACC830007AC00 /* IndirimCollectionCell.swift in Sources */,
-				D4769DD02AD928AB0007AC00 /* HomeFoodCell.swift in Sources */,
+				D4769DD02AD928AB0007AC00 /* HomeVCTableViewCell.swift in Sources */,
 				D41FEE892AD6BDF100B1F284 /* TabBarVC.swift in Sources */,
 				D4769DD22AD928EF0007AC00 /* UIColorExtension.swift in Sources */,
 				D41FEE8C2AD6D10900B1F284 /* APICaller.swift in Sources */,
@@ -337,7 +337,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -394,7 +394,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
