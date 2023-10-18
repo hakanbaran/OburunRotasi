@@ -16,6 +16,7 @@
 		D41FEE8C2AD6D10900B1F284 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41FEE8B2AD6D10900B1F284 /* APICaller.swift */; };
 		D41FEE8F2AD6D1A700B1F284 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D41FEE8E2AD6D1A700B1F284 /* Alamofire */; };
 		D42E66422ADF3ED200606DDB /* FoodDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42E66412ADF3ED200606DDB /* FoodDetailsVC.swift */; };
+		D42E66452ADF43B900606DDB /* FittedSheets in Frameworks */ = {isa = PBXBuildFile; productRef = D42E66442ADF43B900606DDB /* FittedSheets */; };
 		D451A27B2AD71496002BD65B /* YemeklerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451A27A2AD71496002BD65B /* YemeklerResponse.swift */; };
 		D451A27D2AD71C2C002BD65B /* SepetKayitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451A27C2AD71C2C002BD65B /* SepetKayitModel.swift */; };
 		D451A27F2AD83746002BD65B /* FavoriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451A27E2AD83746002BD65B /* FavoriteVC.swift */; };
@@ -60,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D42E66452ADF43B900606DDB /* FittedSheets in Frameworks */,
 				D4769DCB2AD9146A0007AC00 /* SDWebImage in Frameworks */,
 				D4769DCD2AD9146A0007AC00 /* SDWebImageMapKit in Frameworks */,
 				D41FEE8F2AD6D1A700B1F284 /* Alamofire in Frameworks */,
@@ -212,6 +214,7 @@
 				D41FEE8E2AD6D1A700B1F284 /* Alamofire */,
 				D4769DCA2AD9146A0007AC00 /* SDWebImage */,
 				D4769DCC2AD9146A0007AC00 /* SDWebImageMapKit */,
+				D42E66442ADF43B900606DDB /* FittedSheets */,
 			);
 			productName = OburunRotasi;
 			productReference = D41E372B2AD6A35E00E4CCCC /* OburunRotasi.app */;
@@ -244,6 +247,7 @@
 			packageReferences = (
 				D41FEE8D2AD6D1A700B1F284 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				D4769DC92AD9146A0007AC00 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				D42E66432ADF43B900606DDB /* XCRemoteSwiftPackageReference "FittedSheets" */,
 			);
 			productRefGroup = D41E372C2AD6A35E00E4CCCC /* Products */;
 			projectDirPath = "";
@@ -512,6 +516,14 @@
 				minimumVersion = 5.8.0;
 			};
 		};
+		D42E66432ADF43B900606DDB /* XCRemoteSwiftPackageReference "FittedSheets" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gordontucker/FittedSheets";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.1;
+			};
+		};
 		D4769DC92AD9146A0007AC00 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
@@ -527,6 +539,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D41FEE8D2AD6D1A700B1F284 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		D42E66442ADF43B900606DDB /* FittedSheets */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D42E66432ADF43B900606DDB /* XCRemoteSwiftPackageReference "FittedSheets" */;
+			productName = FittedSheets;
 		};
 		D4769DCA2AD9146A0007AC00 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;

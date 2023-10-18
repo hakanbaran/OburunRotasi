@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import FittedSheets
 
 class HomeVC: UIViewController {
     
@@ -87,10 +88,20 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        let model = yemeklerListesi[indexPath.row]
+        
+        let url = URL(string: "http://kasimadalan.pe.hu/yemekler/resimler/\(model.yemek_resim_adi)")
+        
         let vc = FoodDetailsVC()
         
+        vc.imageView.sd_setImage(with: url)
         
-        self.present(vc, animated: true)
+        let sheetController = SheetViewController(controller: vc, sizes: [.intrinsic])
+        
+        
+        
+        
+        self.present(sheetController, animated: true)
         
     }
     
