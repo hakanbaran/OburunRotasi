@@ -28,6 +28,14 @@ class FoodDetailsVC: UIViewController {
         imageView.sd_setImage(with: url)
         imageView.backgroundColor = UIColor(hex: "#248CB3")
         imageView.alpha = 0.7
+        
+        imageView.layer.shadowColor = UIColor.white.cgColor
+        imageView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        imageView.layer.shadowOpacity = 1
+        imageView.layer.shadowRadius = 3
+        imageView.layer.cornerRadius = 15
+        imageView.layer.borderWidth = 0.2
+        imageView.layer.borderColor = UIColor.darkGray.cgColor
         return imageView
     }()
     

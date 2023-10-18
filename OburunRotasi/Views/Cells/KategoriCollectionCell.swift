@@ -56,16 +56,8 @@ class KategoriCollectionCell: UICollectionViewCell {
         super.layoutSubviews()
         
         backgroudView.frame = CGRect(x: 0, y: height/4, width: width, height: height/1.4)
-        
         imageView.frame = CGRect(x: (width-width/1.4)/2, y: -height/4, width: width/1.4, height: width/1.4)
-        
-        
         label.frame = CGRect(x: width/2-width/2, y: height/2, width: width, height: height/2)
-        
-        
-        
-        
-        
     }
     
     
