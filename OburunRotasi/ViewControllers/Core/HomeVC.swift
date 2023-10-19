@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 import FittedSheets
-
+import CoreData
 
 struct Category {
     var id: String?
@@ -18,6 +18,8 @@ struct Category {
 }
 
 class HomeVC: UIViewController {
+    
+    let context = appDelegate.persistentContainer.viewContext
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -30,22 +32,7 @@ class HomeVC: UIViewController {
     private var headerView: HeroHeaderUIView?
     var yemeklerListesi = [Yemekler]()
     
-    let categories: [Category] = [
-        Category(id: "1", name1: "Türk Mutfağı", name2: "İçecekler", name3: "Köfte"),
-        Category(id: "2", name1: "Türk Mutfağı", name2: "Tatlılar", name3: ""),
-        Category(id: "3", name1: "İçecekler", name2: "", name3: ""),
-        Category(id: "4", name1: "Dünyadan", name2: "Tavuk/Balık", name3: ""),
-        Category(id: "5", name1: "Dünyadan", name2: "Tavuk/Balık", name3: ""),
-        Category(id: "6", name1: "Türk Mutfağı", name2: "Tatlılar", name3: "Köfte"),
-        Category(id: "7", name1: "İçecekler", name2: "Dünyadan", name3: ""),
-        Category(id: "8", name1: "Türk Mutfağı", name2: "Köfte", name3: ""),
-        Category(id: "9", name1: "Dünyadan", name2: "", name3: ""),
-        Category(id: "10", name1: "Dünyadan", name2: "", name3: ""),
-        Category(id: "11", name1: "Dünyadan", name2: "", name3: ""),
-        Category(id: "12", name1: "İçecekler", name2: "Köfte", name3: ""),
-        Category(id: "13", name1: "Türk Mutfağı", name2: "Tatlılar", name3: ""),
-        Category(id: "14", name1: "Tatlılar", name2: "Dünyadan", name3: ""),
-    ]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,11 +42,15 @@ class HomeVC: UIViewController {
         tableView.dataSource = self
         headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.frame.width/1.1))
         tableView.tableHeaderView = headerView
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tumYemekler()
+        
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -80,6 +71,16 @@ class HomeVC: UIViewController {
         }
     }
     
+    private func downloadTitleAt(indexPath: IndexPath) {
+        DataPersistantManager.shared.addFavorite(model: yemeklerListesi[indexPath.row]) { result in
+            switch result {
+            case .success():
+                print("OLDUU")
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 }
 
 extension HomeVC: UITableViewDelegate, UITableViewDataSource {
@@ -98,28 +99,25 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         let model = yemeklerListesi[indexPath.row]
-        let url = URL(string: "http://kasimadalan.pe.hu/yemekler/resimler/\(model.yemek_resim_adi)")
-        cell.yemekResim.sd_setImage(with: url)
-        cell.yemekIsimLabel.text = model.yemek_adi
-        
-        if let fiyat = model.yemek_fiyat {
-            cell.yemekFiyatLabel.text = "\(fiyat) ₺"
-        }
-        
-        setCategoryLabels(for: model.yemek_id, in: cell)
+        cell.model = model
+        cell.apply()
+            let id = model.yemek_id
+            let request: NSFetchRequest<YemeklerData>
+            request = YemeklerData.fetchRequest()
+            request.predicate = NSPredicate(format: "yemek_id == %@", id!)
+            do {
+                let existing = try context.fetch(request)
+                if existing.isEmpty {
+                    cell.imageHeartView.image = UIImage(systemName: "heart")
+                } else {
+                    cell.imageHeartView.image = UIImage(systemName: "heart.fill")
+                }
+            } catch {
+                print("HATAA!!!!")
+            }
         return cell
     }
     
-    func setCategoryLabels(for categoryId: String?, in cell: HomeVCTableViewCell) {
-        guard let id = categoryId, let category = categories.first(where: { $0.id == id }) else {
-            return
-        }
-        cell.yemekKategori1.setTitle(category.name1, for: .normal)
-        cell.yemekKategori2.setTitle(category.name2, for: .normal)
-        cell.yemekKategori3.setTitle(category.name3, for: .normal)
-        cell.yemekKategori2.isHidden = category.name2!.isEmpty
-        cell.yemekKategori3.isHidden = category.name3.isEmpty
-    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -131,11 +129,11 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
         if let fiyat = model.yemek_fiyat {
             vc.priceLabel.text = "\(fiyat) ₺"
         }
+        
+        
         let sheetController = SheetViewController(controller: vc, sizes: [.intrinsic])
         self.present(sheetController, animated: true)
     }
-    
-    
     
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -154,15 +152,5 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
 
 
 
-extension String {
-    func extractValue(forKey key: String) -> String? {
-        if let range = self.range(of: "\(key): ") {
-            let startIndex = range.upperBound
-            let substring = self[startIndex...]
-            if let endIndex = substring.firstIndex(of: ",") {
-                return String(substring[..<endIndex])
-            }
-        }
-        return nil
-    }
-}
+
+

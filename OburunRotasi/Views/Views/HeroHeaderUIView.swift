@@ -162,8 +162,6 @@ class HeroHeaderUIView: UIView {
     
     
     func configureConstraints() {
-        
-        
         let navigationHeight = navigationBarView.frame.height
         appIcon.frame = CGRect(x: width/20, y: -width/20, width: width/10, height: width/10)
         appTittle.frame = CGRect(x: width/20 + width/10 + width/40, y: -width/20+navigationHeight/10 + width/80, width: width/2, height: height/20)

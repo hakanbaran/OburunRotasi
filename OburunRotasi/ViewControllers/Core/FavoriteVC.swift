@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import SDWebImage
+import CoreData
 
 class FavoriteVC: UIViewController {
+    
+    let context = appDelegate.persistentContainer.viewContext
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -17,27 +21,90 @@ class FavoriteVC: UIViewController {
         return tableView
     }()
     
-
+    var favoriYemekler = [YemeklerData]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Favori Yemeklerim"
+        view.addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchingFood()
+        tableView.reloadData()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.frame = view.bounds
+    }
+    
+    
+    func fetchingFood() {
+        DataPersistantManager.shared.fetchingFavorite { result in
+            switch result {
+            case .success(let yemeklerDatas):
+                self.favoriYemekler = yemeklerDatas
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 }
 
 extension FavoriteVC: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return view.frame.height/6
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return favoriYemekler.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeVCTableViewCell.identifier, for: indexPath) as? HomeVCTableViewCell else {
             return UITableViewCell()
         }
+        let model = favoriYemekler[indexPath.row]
         
+        let resimAdi = model.yemek_resim_adi ?? ""
+        
+        let url = URL(string: "http://kasimadalan.pe.hu/yemekler/resimler/\(resimAdi)")
+        cell.yemekResim.sd_setImage(with: url)
+        cell.yemekIsimLabel.text = model.yemek_adi
+        if let fiyat = model.yemek_fiyat {
+            cell.yemekFiyatLabel.text = "\(fiyat) ₺"
+        }
+        
+        let id = model.yemek_id
+        let request: NSFetchRequest<YemeklerData>
+        request = YemeklerData.fetchRequest()
+        request.predicate = NSPredicate(format: "yemek_id == %@", id!)
+        do {
+            let existing = try context.fetch(request)
+            if existing.isEmpty {
+                cell.imageHeartView.image = UIImage(systemName: "heart")
+            } else {
+                cell.imageHeartView.image = UIImage(systemName: "heart.fill")
+            }
+        } catch {
+            print("HATAA!!!!")
+        }
         return cell
     }
     
-    
-    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        switch editingStyle {
+        case .delete:
+            DataPersistantManager.shared.deleteFavorite(model: self.favoriYemekler[indexPath.row])
+            self.favoriYemekler.remove(at: indexPath.row)
+            tableView.reloadData()
+        default:
+            break;
+        }
+    }
 }

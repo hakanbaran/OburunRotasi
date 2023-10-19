@@ -6,10 +6,40 @@
 //
 
 import UIKit
+import SDWebImage
+
 
 class HomeVCTableViewCell: UITableViewCell {
+    
+    
 
     static let identifier = "HomeVCTableViewCell"
+    
+    
+    
+    
+    let categories: [Category] = [
+        Category(id: "1", name1: "Türk Mutfağı", name2: "İçecekler", name3: "Köfte"),
+        Category(id: "2", name1: "Türk Mutfağı", name2: "Tatlılar", name3: ""),
+        Category(id: "3", name1: "İçecekler", name2: "", name3: ""),
+        Category(id: "4", name1: "Dünyadan", name2: "Tavuk/Balık", name3: ""),
+        Category(id: "5", name1: "Dünyadan", name2: "Tavuk/Balık", name3: ""),
+        Category(id: "6", name1: "Türk Mutfağı", name2: "Tatlılar", name3: "Köfte"),
+        Category(id: "7", name1: "İçecekler", name2: "Dünyadan", name3: ""),
+        Category(id: "8", name1: "Türk Mutfağı", name2: "Köfte", name3: ""),
+        Category(id: "9", name1: "Dünyadan", name2: "", name3: ""),
+        Category(id: "10", name1: "Dünyadan", name2: "", name3: ""),
+        Category(id: "11", name1: "Dünyadan", name2: "", name3: ""),
+        Category(id: "12", name1: "İçecekler", name2: "Köfte", name3: ""),
+        Category(id: "13", name1: "Türk Mutfağı", name2: "Tatlılar", name3: ""),
+        Category(id: "14", name1: "Tatlılar", name2: "Dünyadan", name3: ""),
+    ]
+    
+    var model : Yemekler?
+    
+    var favoriYemekler = [YemeklerData]()
+    
+    let imageHeartView = UIImageView()
     
     let cellView : UIView = {
         let view = UIView()
@@ -81,11 +111,8 @@ class HomeVCTableViewCell: UITableViewCell {
     
     public let favoriButton: UIButton = {
         let button = UIButton()
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(systemName: "heart")
-        imageView.frame = CGRect(x: 0, y: 0, width: 35, height: 30)
-        button.addSubview(imageView)
+        
+        
         button.tintColor = UIColor(hex: "#248CB3")
         return button
     }()
@@ -117,6 +144,15 @@ class HomeVCTableViewCell: UITableViewCell {
         cellView.addSubview(sepetButton)
         
         favoriButton.addTarget(self, action: #selector(favoriteButtonClicked), for: .touchUpInside)
+        imageHeartView.contentMode = .scaleAspectFit
+        imageHeartView.image = UIImage(systemName: "heart")
+        imageHeartView.frame = CGRect(x: 0, y: 0, width: 35, height: 30)
+        favoriButton.addSubview(imageHeartView)
+        
+        
+        
+        
+        
     }
     
     required init?(coder: NSCoder) {
@@ -141,23 +177,51 @@ class HomeVCTableViewCell: UITableViewCell {
     
     @objc func favoriteButtonClicked() {
         
-        let yemekModel1 = Yemekler(yemek_id: "15", yemek_adi: "Künefe", yemek_resim_adi: "biyerler.png", yemek_fiyat: "24")
-        
-        DataPersistantManager.shared.addFavorite(model: yemekModel1) { result in
-            switch result {
-                
-            case .success(let yemek):
-                print(yemek)
-                
-            case.failure(let error):
-                print(error.localizedDescription)
-                
-            }
+        guard let model = model  else {
+            return
         }
         
-        
-        
+        DataPersistantManager.shared.addFavorite(model: model) { result in
+            switch result {
+            case .success(let yemek):
+                print(yemek)
+            case.failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
+
+    
+    func setCategoryLabels(for categoryId: String?) {
+        guard let id = categoryId, let category = categories.first(where: { $0.id == id }) else {
+            return
+        }
+        yemekKategori1.setTitle(category.name1, for: .normal)
+        yemekKategori2.setTitle(category.name2, for: .normal)
+        yemekKategori3.setTitle(category.name3, for: .normal)
+        yemekKategori2.isHidden = category.name2!.isEmpty
+        yemekKategori3.isHidden = category.name3.isEmpty
+    }
+    
+    
+    func apply() {
+        
+        setCategoryLabels(for: model?.yemek_id)
+        
+        if let resim = model?.yemek_resim_adi {
+            let url = URL(string: "http://kasimadalan.pe.hu/yemekler/resimler/\(resim)")
+            yemekResim.sd_setImage(with: url)
+        }
+        yemekIsimLabel.text = model?.yemek_adi
+        if let fiyat = model?.yemek_fiyat {
+            yemekFiyatLabel.text = "\(fiyat) ₺"
+        }
+    }
+    
+    
+    
+    
+    
 }
 
 

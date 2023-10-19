@@ -20,6 +20,7 @@
 		D42E66472AE119A500606DDB /* BasketVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42E66462AE119A500606DDB /* BasketVC.swift */; };
 		D42E664A2AE122E900606DDB /* DataPersistantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42E66492AE122E900606DDB /* DataPersistantManager.swift */; };
 		D42E664D2AE124C200606DDB /* YemeklerCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D42E664B2AE124C200606DDB /* YemeklerCoreData.xcdatamodeld */; };
+		D42E664F2AE16D4F00606DDB /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42E664E2AE16D4F00606DDB /* StringExtension.swift */; };
 		D451A27B2AD71496002BD65B /* YemeklerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451A27A2AD71496002BD65B /* YemeklerResponse.swift */; };
 		D451A27D2AD71C2C002BD65B /* SepetKayitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451A27C2AD71C2C002BD65B /* SepetKayitModel.swift */; };
 		D451A27F2AD83746002BD65B /* FavoriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451A27E2AD83746002BD65B /* FavoriteVC.swift */; };
@@ -49,6 +50,7 @@
 		D42E66462AE119A500606DDB /* BasketVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketVC.swift; sourceTree = "<group>"; };
 		D42E66492AE122E900606DDB /* DataPersistantManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistantManager.swift; sourceTree = "<group>"; };
 		D42E664C2AE124C200606DDB /* YemeklerCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = YemeklerCoreData.xcdatamodel; sourceTree = "<group>"; };
+		D42E664E2AE16D4F00606DDB /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		D451A27A2AD71496002BD65B /* YemeklerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YemeklerResponse.swift; sourceTree = "<group>"; };
 		D451A27C2AD71C2C002BD65B /* SepetKayitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SepetKayitModel.swift; sourceTree = "<group>"; };
 		D451A27E2AD83746002BD65B /* FavoriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVC.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 			children = (
 				D4769DD12AD928EF0007AC00 /* UIColorExtension.swift */,
 				D4769DE52ADB51F70007AC00 /* UIViewExtension.swift */,
+				D42E664E2AE16D4F00606DDB /* StringExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				D41E37332AD6A35E00E4CCCC /* HomeVC.swift in Sources */,
 				D41E372F2AD6A35E00E4CCCC /* AppDelegate.swift in Sources */,
 				D4769DE42ADB51AD0007AC00 /* FoodHeaderCollectionReusableView.swift in Sources */,
+				D42E664F2AE16D4F00606DDB /* StringExtension.swift in Sources */,
 				D4769DDF2ADAF7C70007AC00 /* KategoriCollectionCell.swift in Sources */,
 				D451A2812AD8375A002BD65B /* ProfileVC.swift in Sources */,
 				D451A27D2AD71C2C002BD65B /* SepetKayitModel.swift in Sources */,
