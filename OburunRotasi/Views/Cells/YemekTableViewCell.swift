@@ -226,11 +226,6 @@ class YemekTableViewCell: UITableViewCell {
             yemekFiyatLabel.text = "\(fiyat) ₺"
         }
     }
-    
-    
-    
-    
-    
 }
 
 

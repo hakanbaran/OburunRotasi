@@ -14,7 +14,7 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        overrideUserInterfaceStyle = .dark
         
         let homeVC = HomeVC()
         let favoriteVC = FavoriteVC()

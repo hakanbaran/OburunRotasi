@@ -21,6 +21,7 @@
 		D42E664A2AE122E900606DDB /* DataPersistantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42E66492AE122E900606DDB /* DataPersistantManager.swift */; };
 		D42E664D2AE124C200606DDB /* YemeklerCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D42E664B2AE124C200606DDB /* YemeklerCoreData.xcdatamodeld */; };
 		D42E664F2AE16D4F00606DDB /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42E664E2AE16D4F00606DDB /* StringExtension.swift */; };
+		D42E66512AE1EE9500606DDB /* BasketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42E66502AE1EE9500606DDB /* BasketTableViewCell.swift */; };
 		D451A27B2AD71496002BD65B /* YemeklerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451A27A2AD71496002BD65B /* YemeklerResponse.swift */; };
 		D451A27D2AD71C2C002BD65B /* SepetKayitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451A27C2AD71C2C002BD65B /* SepetKayitModel.swift */; };
 		D451A27F2AD83746002BD65B /* FavoriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451A27E2AD83746002BD65B /* FavoriteVC.swift */; };
@@ -51,6 +52,7 @@
 		D42E66492AE122E900606DDB /* DataPersistantManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistantManager.swift; sourceTree = "<group>"; };
 		D42E664C2AE124C200606DDB /* YemeklerCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = YemeklerCoreData.xcdatamodel; sourceTree = "<group>"; };
 		D42E664E2AE16D4F00606DDB /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		D42E66502AE1EE9500606DDB /* BasketTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketTableViewCell.swift; sourceTree = "<group>"; };
 		D451A27A2AD71496002BD65B /* YemeklerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YemeklerResponse.swift; sourceTree = "<group>"; };
 		D451A27C2AD71C2C002BD65B /* SepetKayitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SepetKayitModel.swift; sourceTree = "<group>"; };
 		D451A27E2AD83746002BD65B /* FavoriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVC.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				D4769DDC2ADACC830007AC00 /* IndirimCollectionCell.swift */,
 				D4769DDE2ADAF7C70007AC00 /* KategoriCollectionCell.swift */,
 				D4769DCF2AD928AB0007AC00 /* YemekTableViewCell.swift */,
+				D42E66502AE1EE9500606DDB /* BasketTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				D41FEE892AD6BDF100B1F284 /* TabBarVC.swift in Sources */,
 				D4769DD22AD928EF0007AC00 /* UIColorExtension.swift in Sources */,
 				D41FEE8C2AD6D10900B1F284 /* APICaller.swift in Sources */,
+				D42E66512AE1EE9500606DDB /* BasketTableViewCell.swift in Sources */,
 				D42E664A2AE122E900606DDB /* DataPersistantManager.swift in Sources */,
 				D41E37312AD6A35E00E4CCCC /* SceneDelegate.swift in Sources */,
 			);
