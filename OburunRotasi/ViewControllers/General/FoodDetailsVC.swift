@@ -132,8 +132,9 @@ class FoodDetailsVC: UIViewController {
     
     let scoreLabel: UILabel = {
         let label = UILabel()
-        label.text = "0"
+        label.text = "1"
         label.font = .systemFont(ofSize: 32, weight: .semibold)
+        label.textAlignment = .center
         return label
     }()
     
@@ -149,12 +150,13 @@ class FoodDetailsVC: UIViewController {
         return button
     }()
     
+    var siparisSayısı = 1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(hex: "#0C1B3A")
         
         textView.delegate = self
-
         stackView.addArrangedSubview(detailView)
         
         detailView.addSubview(imageView)
@@ -173,34 +175,17 @@ class FoodDetailsVC: UIViewController {
         detailView.isUserInteractionEnabled = true
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeKeyboard))
         detailView.addGestureRecognizer(tapGestureRecognizer)
+        minusButton.addTarget(self, action: #selector(siparisAzalt), for: .touchUpInside)
+        plusButton.addTarget(self, action: #selector(siparisArttır), for: .touchUpInside)
+        
+        addBasketbutton.addTarget(self, action: #selector(addBasketButtonClicked), for: .touchUpInside)
     }
     
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         configureStackViewConstraints()
-        let width = view.frame.width
-        
-        stackView.frame = view.bounds
-        detailView.widthAnchor.constraint(equalToConstant: width).isActive = true
-        detailView.heightAnchor.constraint(equalToConstant: width*1.5).isActive = true
-        
-        imageView.frame = CGRect(x: 0, y: 0, width: width, height: width/1.8)
-        nameLabel.frame = CGRect(x: width/20, y: width/1.8+width/20, width: width/2, height: width/15)
-        priceLabel.frame = CGRect(x: width-width/2-width/20, y: width/1.8+width/20, width: width/2, height: width/15)
-        label1.frame = CGRect(x: width/20, y: width/1.8+width/10+width/15, width: width/4, height: width/15)
-        label2.frame = CGRect(x: width/2-width/6, y: width/1.8+width/10+width/15, width: width/3, height: width/15)
-        label3.frame = CGRect(x: width-width/20-width/4, y: width/1.8+width/10+width/15, width: width/4, height: width/15)
-        textView.frame = CGRect(x: width/20, y: width/1.8+width/10+width/15+width/15+width/20, width: width-width/10, height: width/3)
-        minusButton.frame = CGRect(x: width/20, y:width/1.8+width/10+width/15+width/15+width/10+width/3 , width: width/10, height: width/10)
-        scoreLabel.frame = CGRect(x: width/20+width/10+width/20, y:width/1.8+width/10+width/15+width/15+width/10+width/3 , width: width/10, height: width/10)
-        plusButton.frame = CGRect(x: width/20+width/10+width/10+width/20, y:width/1.8+width/10+width/15+width/15+width/10+width/3 , width: width/10, height: width/10)
-        
-        addBasketbutton.frame = CGRect(x: width-width/20-width/2.5, y: width/1.8+width/10+width/15+width/15+width/10+width/3, width: width/2.5, height: width/10)
-        
-        minusButton.layer.cornerRadius = minusButton.frame.width/2
-        plusButton.layer.cornerRadius = minusButton.frame.width/2
-        addBasketbutton.layer.cornerRadius = addBasketbutton.frame.height/2
+        configureConstraints()
     }
     
     func configureStackViewConstraints() {
@@ -212,23 +197,48 @@ class FoodDetailsVC: UIViewController {
         ])
     }
     
+    func configureConstraints() {
+        let width = view.frame.width
+        detailView.widthAnchor.constraint(equalToConstant: width).isActive = true
+        detailView.heightAnchor.constraint(equalToConstant: width*1.5).isActive = true
+        imageView.frame = CGRect(x: 0, y: 0, width: width, height: width/1.8)
+        nameLabel.frame = CGRect(x: width/20, y: width/1.8+width/20, width: width/2, height: width/15)
+        priceLabel.frame = CGRect(x: width-width/2-width/20, y: width/1.8+width/20, width: width/2, height: width/15)
+        label1.frame = CGRect(x: width/20, y: width/1.8+width/10+width/15, width: width/4, height: width/15)
+        label2.frame = CGRect(x: width/2-width/6, y: width/1.8+width/10+width/15, width: width/3, height: width/15)
+        label3.frame = CGRect(x: width-width/20-width/4, y: width/1.8+width/10+width/15, width: width/4, height: width/15)
+        textView.frame = CGRect(x: width/20, y: width/1.8+width/10+width/15+width/15+width/20, width: width-width/10, height: width/3)
+        minusButton.frame = CGRect(x: width/20, y:width/1.8+width/10+width/15+width/15+width/10+width/3 , width: width/10, height: width/10)
+        scoreLabel.frame = CGRect(x: width/20+width/13+width/20, y:width/1.8+width/10+width/15+width/15+width/10+width/3 , width: width/10, height: width/10)
+        plusButton.frame = CGRect(x: width/20+width/10+width/10+width/20, y:width/1.8+width/10+width/15+width/15+width/10+width/3 , width: width/10, height: width/10)
+        addBasketbutton.frame = CGRect(x: width-width/20-width/2.5, y: width/1.8+width/10+width/15+width/15+width/10+width/3, width: width/2.5, height: width/10)
+        minusButton.layer.cornerRadius = minusButton.frame.width/2
+        plusButton.layer.cornerRadius = minusButton.frame.width/2
+        addBasketbutton.layer.cornerRadius = addBasketbutton.frame.height/2
+    }
+    
     @objc func closeKeyboard() {
         view.endEditing(true)
     }
+    @objc func siparisAzalt() {
+        siparisSayısı -= 1
+        scoreLabel.text = String(siparisSayısı)
+    }
+    @objc func siparisArttır() {
+        siparisSayısı += 1
+        scoreLabel.text = String(siparisSayısı)
+    }
     
-    
-    
+    @objc func addBasketButtonClicked() {
+            self.dismiss(animated: true)
+    }
 }
 
 extension FoodDetailsVC: UITextViewDelegate {
-    
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == "Sipariş Notunu Giriniz..." {
             textView.text = ""
             textView.textColor = UIColor.lightGray
         }
     }
-    
-    
-    
 }

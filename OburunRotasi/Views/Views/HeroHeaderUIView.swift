@@ -172,7 +172,7 @@ class HeroHeaderUIView: UIView {
 
         searcBar.frame = CGRect(x: width/20, y: width/10, width: width-width/10, height: width/8)
         
-        collectionView.frame = CGRect(x: width/20, y: width/4, width: width-width/10, height: width/1.75)
+        collectionView.frame = CGRect(x: width/20, y: width/4, width: width-width/10, height: width/1.7)
         
         yemeklerLabel.frame = CGRect(x: width/15, y: width/4+collectionView.frame.height+width/30, width: width/2, height: height/20)
     }

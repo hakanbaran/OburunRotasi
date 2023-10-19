@@ -18,6 +18,7 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate {
         
         let homeVC = HomeVC()
         let favoriteVC = FavoriteVC()
+        let basketVC = BasketVC()
         let profileVC = ProfileVC()
         
         
@@ -25,25 +26,24 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate {
         
         homeVC.navigationItem.largeTitleDisplayMode = .always
         favoriteVC.navigationItem.largeTitleDisplayMode = .always
+        basketVC.navigationItem.largeTitleDisplayMode = .always
         profileVC.navigationItem.largeTitleDisplayMode = .always
         
         let navHome = UINavigationController(rootViewController: homeVC)
         let navFavorite = UINavigationController(rootViewController: favoriteVC)
+        let navBasket = UINavigationController(rootViewController: basketVC)
         let navProfile = UINavigationController(rootViewController: profileVC)
         
         navHome.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "person"), tag: 1)
         navFavorite.tabBarItem = UITabBarItem(title: "Favorite", image: UIImage(systemName: "person"), tag: 2)
-        navProfile.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), tag: 3)
+        navBasket.tabBarItem = UITabBarItem(title: "Basket", image: UIImage(systemName: "person"), tag: 3)
+        navProfile.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), tag: 4)
         
         
-        
-        
-        setViewControllers([navHome,navFavorite, navProfile], animated: true)
+        setViewControllers([navHome,navFavorite,navBasket, navProfile], animated: true)
         
         
     }
-    
-    
 }
 
 

@@ -27,7 +27,6 @@ class APICaller {
                         return
                     }
                     completion(.success(result))
-                    print(result)
                 }catch {
                     print(error.localizedDescription)
                 }
