@@ -25,7 +25,7 @@ class HomeVC: UIViewController {
         let tableView = UITableView()
         tableView.backgroundColor = UIColor(hex: "#0C1B3A")
         tableView.separatorStyle = .none
-        tableView.register(HomeVCTableViewCell.self, forCellReuseIdentifier: HomeVCTableViewCell.identifier)
+        tableView.register(YemekTableViewCell.self, forCellReuseIdentifier: YemekTableViewCell.identifier)
         return tableView
     }()
     
@@ -95,26 +95,31 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeVCTableViewCell.identifier, for: indexPath) as? HomeVCTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: YemekTableViewCell.identifier, for: indexPath) as? YemekTableViewCell else {
             return UITableViewCell()
         }
         let model = yemeklerListesi[indexPath.row]
         cell.model = model
         cell.apply()
-            let id = model.yemek_id
-            let request: NSFetchRequest<YemeklerData>
-            request = YemeklerData.fetchRequest()
-            request.predicate = NSPredicate(format: "yemek_id == %@", id!)
-            do {
-                let existing = try context.fetch(request)
-                if existing.isEmpty {
-                    cell.imageHeartView.image = UIImage(systemName: "heart")
-                } else {
-                    cell.imageHeartView.image = UIImage(systemName: "heart.fill")
+        
+        
+        if let id = model.yemek_id {
+            
+            DataPersistantManager.shared.filterFavorite(id: id) { result in
+                switch result {
+                case .success(let filterFood):
+                    
+                    if filterFood.isEmpty {
+                        cell.imageHeartView.image = UIImage(systemName: "heart")
+                    } else {
+                        cell.imageHeartView.image = UIImage(systemName: "heart.fill")
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
                 }
-            } catch {
-                print("HATAA!!!!")
             }
+            
+        }      
         return cell
     }
     

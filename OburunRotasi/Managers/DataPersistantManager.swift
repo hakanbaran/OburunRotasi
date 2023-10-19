@@ -36,8 +36,6 @@ class DataPersistantManager {
                 newFood.yemek_resim_adi = model.yemek_resim_adi
                 appDelegate.saveContext()
             } else {
-                
-                
                 print("AYNI ISIM")
             }
             
@@ -46,9 +44,18 @@ class DataPersistantManager {
         }
     }
     
-    
-    
-    
+    func filterFavorite(id: String, completion: @escaping(Result<[YemeklerData], Error>) ->()) {
+        let request: NSFetchRequest<YemeklerData>
+        request = YemeklerData.fetchRequest()
+        request.predicate = NSPredicate(format: "yemek_id == %@", id)
+        do {
+            let existing = try context.fetch(request)
+            
+            completion(.success(existing))
+        } catch {
+            print("HATAA!!!!")
+        }
+    }
     
     func fetchingFavorite(completion: @escaping(Result<[YemeklerData], Error>) ->()) {
         
@@ -62,15 +69,11 @@ class DataPersistantManager {
         }
     }
     
-   
-    
-    
     func deleteFavorite(model: YemeklerData) {
-        
         context.delete(model)
         appDelegate.saveContext()
-        
-        
     }
+    
+    
     
 }

@@ -9,14 +9,11 @@ import UIKit
 import SDWebImage
 
 
-class HomeVCTableViewCell: UITableViewCell {
+class YemekTableViewCell: UITableViewCell {
     
     
 
-    static let identifier = "HomeVCTableViewCell"
-    
-    
-    
+    static let identifier = "YemekTableViewCell"
     
     let categories: [Category] = [
         Category(id: "1", name1: "Türk Mutfağı", name2: "İçecekler", name3: "Köfte"),
@@ -111,8 +108,6 @@ class HomeVCTableViewCell: UITableViewCell {
     
     public let favoriButton: UIButton = {
         let button = UIButton()
-        
-        
         button.tintColor = UIColor(hex: "#248CB3")
         return button
     }()
@@ -149,10 +144,6 @@ class HomeVCTableViewCell: UITableViewCell {
         imageHeartView.frame = CGRect(x: 0, y: 0, width: 35, height: 30)
         favoriButton.addSubview(imageHeartView)
         
-        
-        
-        
-        
     }
     
     required init?(coder: NSCoder) {
@@ -181,11 +172,29 @@ class HomeVCTableViewCell: UITableViewCell {
             return
         }
         
-        DataPersistantManager.shared.addFavorite(model: model) { result in
+        guard let id = model.yemek_id else {
+            return
+        }
+        
+        DataPersistantManager.shared.filterFavorite(id: id) { result in
             switch result {
-            case .success(let yemek):
-                print(yemek)
-            case.failure(let error):
+            case .success(let filterFood):
+                
+                if filterFood.isEmpty {
+                    self.imageHeartView.image = UIImage(systemName: "heart.fill")
+                    DataPersistantManager.shared.addFavorite(model: model) { result in
+                        switch result {
+                        case .success(let yemek):
+                            print(yemek)
+                        case.failure(let error):
+                            print(error.localizedDescription)
+                        }
+                    }
+                } else {
+                    
+                }
+                
+            case .failure(let error):
                 print(error.localizedDescription)
             }
         }

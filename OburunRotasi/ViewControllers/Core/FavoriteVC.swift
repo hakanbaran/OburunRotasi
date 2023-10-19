@@ -17,7 +17,7 @@ class FavoriteVC: UIViewController {
         let tableView = UITableView()
         tableView.backgroundColor = UIColor(hex: "#0C1B3A")
         tableView.separatorStyle = .none
-        tableView.register(HomeVCTableViewCell.self, forCellReuseIdentifier: HomeVCTableViewCell.identifier)
+        tableView.register(YemekTableViewCell.self, forCellReuseIdentifier: YemekTableViewCell.identifier)
         return tableView
     }()
     
@@ -66,7 +66,7 @@ extension FavoriteVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeVCTableViewCell.identifier, for: indexPath) as? HomeVCTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: YemekTableViewCell.identifier, for: indexPath) as? YemekTableViewCell else {
             return UITableViewCell()
         }
         let model = favoriYemekler[indexPath.row]
