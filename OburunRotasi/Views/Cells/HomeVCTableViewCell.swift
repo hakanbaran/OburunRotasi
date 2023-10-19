@@ -115,6 +115,8 @@ class HomeVCTableViewCell: UITableViewCell {
         cellView.addSubview(yemekFiyatLabel)
         cellView.addSubview(favoriButton)
         cellView.addSubview(sepetButton)
+        
+        favoriButton.addTarget(self, action: #selector(favoriteButtonClicked), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -135,6 +137,26 @@ class HomeVCTableViewCell: UITableViewCell {
         yemekFiyatLabel.frame = CGRect(x: width/10+width/4, y: (height-height/1.44-width/20)/2+height/1.44-height/8, width: width/6, height: height/8)
         favoriButton.frame = CGRect(x: width-width/10-width/8, y:  (height-height/1.44-width/20)/2, width: width/8, height: width/8)
         sepetButton.frame = CGRect(x: width-width/10-width/8, y: (height-height/1.44-width/20)/2+height/1.44-height/5, width: width/10, height: width/10)
+    }
+    
+    @objc func favoriteButtonClicked() {
+        
+        let yemekModel1 = Yemekler(yemek_id: "15", yemek_adi: "Künefe", yemek_resim_adi: "biyerler.png", yemek_fiyat: "24")
+        
+        DataPersistantManager.shared.addFavorite(model: yemekModel1) { result in
+            switch result {
+                
+            case .success(let yemek):
+                print(yemek)
+                
+            case.failure(let error):
+                print(error.localizedDescription)
+                
+            }
+        }
+        
+        
+        
     }
 }
 

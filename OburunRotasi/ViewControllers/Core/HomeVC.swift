@@ -82,7 +82,6 @@ class HomeVC: UIViewController {
     
 }
 
-
 extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
