@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class BasketVC: UIViewController {
+class BasketVC: UIViewController  {
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -64,6 +64,7 @@ class BasketVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        
         APICaller.shared.sepettekiYemekleriCek(kullaniciAdi: "hakanbaran") { result in
             switch result {
             case .success(let yemekler):
@@ -82,7 +83,6 @@ class BasketVC: UIViewController {
             }
         }
     }
-    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -114,6 +114,7 @@ extension BasketVC: UITableViewDelegate, UITableViewDataSource {
         }
         let model = sepetYemekler[indexPath.row]
         
+        
         let resimAdi = model.yemek_resim_adi
         
         let url = URL(string: "http://kasimadalan.pe.hu/yemekler/resimler/\(resimAdi)")
@@ -128,9 +129,23 @@ extension BasketVC: UITableViewDelegate, UITableViewDataSource {
         cell.yemekIsimLabel.text = model.yemek_adi
         
         cell.yemekToplamFiyatLabel.text = "Toplam: \(model.yemek_fiyat) ₺"
-        
         return cell
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        let model = sepetYemekler[indexPath.row]
+        
+        let id = Int(model.sepet_yemek_id)!
+        
+        switch editingStyle {
+        case .delete:
+            APICaller.shared.sepettekiYekeleriSil(sepet_yemek_id: id , kullanici_adi: "hakanbaran")
+            self.sepetYemekler.remove(at: indexPath.row)
+            tableView.reloadData()
+        default:
+            break;
+        }
+    }
     
 }

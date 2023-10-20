@@ -7,9 +7,11 @@
 
 import UIKit
 
+
 class BasketTableViewCell: UITableViewCell {
 
     static let identifier = "BasketTableViewCell"
+    
     
     
     var model : SepetYemek?
@@ -61,10 +63,11 @@ class BasketTableViewCell: UITableViewCell {
         let button = UIButton()
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(systemName: "plus.circle")
-        imageView.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
+        imageView.image = UIImage(systemName: "basket")
+        imageView.frame = CGRect(x: 5, y: 5, width: 40, height: 40)
+        imageView.layer.cornerRadius = 20
         button.addSubview(imageView)
-        button.tintColor = UIColor(hex: "#248CB3")
+        button.tintColor = .white
         return button
     }()
     
@@ -92,6 +95,7 @@ class BasketTableViewCell: UITableViewCell {
         
         deleteBasket.addTarget(self, action: #selector(deleteBasketClicked), for: .touchUpInside)
         
+        deleteBasket.backgroundColor = UIColor(hex: "#248CB3")
         
     }
     
@@ -110,8 +114,9 @@ class BasketTableViewCell: UITableViewCell {
         yemekFiyatLabel.frame = CGRect(x: width/10+width/4, y: (height-height/16-width/20)/2, width: width/6, height: height/8)
         yemekAdetLabel.frame = CGRect(x: width/10+width/4, y: (height-height/16-width/20)/2+height/8+width/20, width: width/6, height: height/8)
         
-        deleteBasket.frame = CGRect(x: width-width/10-width/8, y:  (height-height/1.44-width/20)/2, width: width/8, height: width/8)
+        deleteBasket.frame = CGRect(x: width-width/10-width/8-width/20, y:  (height-height/1.44-width/20)/2, width: width/8, height: width/8)
         
+        deleteBasket.layer.cornerRadius = deleteBasket.frame.width/2
         
         yemekToplamFiyatLabel.frame = CGRect(x: (width-width/2)-width/10-width/20, y: (height-height/1.44-width/20)/2+height/1.44-height/5, width: width/2, height: width/10)
     }
@@ -127,20 +132,18 @@ class BasketTableViewCell: UITableViewCell {
             return
         }
         
-        
-        
         yemekFiyatLabel.text = "\(toplamFiyat/siparisAdetInt) ₺"
         
     }
     
     @objc func deleteBasketClicked() {
         
-        guard let id = Int(model!.sepet_yemek_id) else {
-            return
-        }
         
-        APICaller.shared.sepettekiYekeleriSil(sepet_yemek_id: id, kullanici_adi: "hakanbaran")
-//        print(id)
+        
+//        APICaller.shared.sepettekiYekeleriSil(sepet_yemek_id: id, kullanici_adi: "hakanbaran")
+        
+        
+        
     }
 
 }

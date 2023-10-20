@@ -102,9 +102,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
         cell.model = model
         cell.apply()
         
-        
         if let id = model.yemek_id {
-            
             DataPersistantManager.shared.filterFavorite(id: id) { result in
                 switch result {
                 case .success(let filterFood):

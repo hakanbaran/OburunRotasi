@@ -179,12 +179,16 @@ class YemekTableViewCell: UITableViewCell {
     
     @objc func favoriteButtonClicked() {
         
+        
         guard let model = model  else {
             return
         }
+        
         guard let id = model.yemek_id else {
             return
         }
+        print(id)
+        
         DataPersistantManager.shared.filterFavorite(id: id) { result in
             switch result {
             case .success(let filterFood):
@@ -198,15 +202,18 @@ class YemekTableViewCell: UITableViewCell {
                             print(error.localizedDescription)
                         }
                     }
+                }  else {
+                    guard let id = model.yemek_id else {
+                        return
+                    }
+                    self.imageHeartView.image = UIImage(systemName: "heart")
+                    DataPersistantManager.shared.deleteFavoriToButton(id: id)
                 }
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
-    
-    
-
     
     func setCategoryLabels(for categoryId: String?) {
         guard let id = categoryId, let category = categories.first(where: { $0.id == id }) else {
@@ -221,9 +228,7 @@ class YemekTableViewCell: UITableViewCell {
     
     
     func apply() {
-        
         setCategoryLabels(for: model?.yemek_id)
-        
         if let resim = model?.yemek_resim_adi {
             let url = URL(string: "http://kasimadalan.pe.hu/yemekler/resimler/\(resim)")
             yemekResim.sd_setImage(with: url)

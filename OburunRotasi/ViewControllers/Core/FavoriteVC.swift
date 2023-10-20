@@ -8,6 +8,7 @@
 import UIKit
 import SDWebImage
 import CoreData
+import FittedSheets
 
 class FavoriteVC: UIViewController {
     
@@ -71,6 +72,8 @@ extension FavoriteVC: UITableViewDelegate, UITableViewDataSource {
         }
         let model = favoriYemekler[indexPath.row]
         
+        
+        
         let resimAdi = model.yemek_resim_adi ?? ""
         
         let url = URL(string: "http://kasimadalan.pe.hu/yemekler/resimler/\(resimAdi)")
@@ -81,6 +84,7 @@ extension FavoriteVC: UITableViewDelegate, UITableViewDataSource {
         }
         
         let id = model.yemek_id
+        cell.model?.yemek_id = id
         let request: NSFetchRequest<YemeklerData>
         request = YemeklerData.fetchRequest()
         request.predicate = NSPredicate(format: "yemek_id == %@", id!)
@@ -106,5 +110,25 @@ extension FavoriteVC: UITableViewDelegate, UITableViewDataSource {
         default:
             break;
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let model = favoriYemekler[indexPath.row]
+        
+        guard let resimName = model.yemek_resim_adi else {
+            return
+        }
+        
+        let url = URL(string: "http://kasimadalan.pe.hu/yemekler/resimler/\(resimName)")
+        let vc = FoodDetailsVC()
+        vc.imageView.sd_setImage(with: url)
+        vc.nameLabel.text = model.yemek_adi
+        if let fiyat = model.yemek_fiyat {
+            vc.priceLabel.text = "\(fiyat) ₺"
+        }
+        vc.model2 = model
+        let sheetController = SheetViewController(controller: vc, sizes: [.intrinsic])
+        self.present(sheetController, animated: true)
     }
 }

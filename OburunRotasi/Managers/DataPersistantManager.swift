@@ -74,6 +74,31 @@ class DataPersistantManager {
         appDelegate.saveContext()
     }
     
+    func deleteFavoriToButton(id: String) {
+        
+        if let objectToDelete = try? context.fetch(YemeklerData.fetchRequest()) as? [YemeklerData] {
+            
+            let veriIdsi = id
+            
+            if let veriToDelete = objectToDelete.first(where: { $0.yemek_id == veriIdsi }) {
+                context.delete(veriToDelete)
+                
+                do {
+                            try context.save()
+                        } catch {
+                            print("Veri silinirken hata oluştu: \(error)")
+                        }
+            } else {
+                print("Silinecek veri bulunamadı.")
+            }
+                    
+            
+            
+        }
+        
+        
+    }
+    
     
     
 }

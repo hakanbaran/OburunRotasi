@@ -28,6 +28,9 @@ class APICaller {
     
     static let shared = APICaller()
     
+    private let kontrolURLString = "http://kasimadalan.pe.hu/yemekler/kontrol.php"
+
+    
     public func tumYemekler(completion: @escaping (Result<[TumYemekler], Error>) -> ()) {
         guard let yemekAPIURL = URL(string: "http://kasimadalan.pe.hu/yemekler/tumYemekleriGetir.php") else {
             return
@@ -73,6 +76,7 @@ class APICaller {
         }
     }
     
+    
     func sepettekiYemekleriCek(kullaniciAdi: String, completion: @escaping (Result<[SepetYemek], Error>) -> ()) {
         
         guard let url = URL(string: "http://kasimadalan.pe.hu/yemekler/sepettekiYemekleriGetir.php") else {
@@ -99,10 +103,6 @@ class APICaller {
         }
     }
 
-    
-
-
-    
     func sepettekiYekeleriSil(sepet_yemek_id: Int, kullanici_adi: String) {
         
         guard let url = URL(string: "http://kasimadalan.pe.hu/yemekler/sepettenYemekSil.php") else {

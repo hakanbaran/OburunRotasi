@@ -156,6 +156,8 @@ class FoodDetailsVC: UIViewController {
     
     var model : TumYemekler?
     
+    var model2 : YemeklerData?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(hex: "#0C1B3A")
@@ -243,20 +245,29 @@ class FoodDetailsVC: UIViewController {
     
     @objc func addBasketButtonClicked() {
         
-        guard let model = model else { return }
-        
-        guard let yemekName = model.yemek_adi else { return }
-        guard let scoreInt = Int(scoreLabel.text!) else { return }
-        
-        guard let modelFiyat = Int(model.yemek_fiyat!) else { return }
-        let toplamFiyat = modelFiyat*scoreInt
-        
-        
-        
-        APICaller.shared.sepeteYemekKaydet(yemekAdi: yemekName, yemekResimAdi: model.yemek_resim_adi, yemekFiyat: toplamFiyat, yemekSiparisAdet: scoreInt, kullaniciAdi: "hakanbaran")
-        
-        
-        
+        if let model = model {
+            guard let yemekName = model.yemek_adi else { return }
+            guard let scoreInt = Int(scoreLabel.text!) else { return }
+            
+            guard let modelFiyat = Int(model.yemek_fiyat!) else { return }
+            let toplamFiyat = modelFiyat*scoreInt
+            
+            APICaller.shared.sepeteYemekKaydet(yemekAdi: yemekName, yemekResimAdi: model.yemek_resim_adi, yemekFiyat: toplamFiyat, yemekSiparisAdet: scoreInt, kullaniciAdi: "hakanbaran")
+            
+        } else if let model2 = model2 {
+            
+            guard let yemekName = model2.yemek_adi else { return }
+            guard let scoreInt = Int(scoreLabel.text!) else { return }
+            
+            guard let modelFiyat = Int(model2.yemek_fiyat!) else { return }
+            let toplamFiyat = modelFiyat*scoreInt
+            
+            guard let resimName = model2.yemek_resim_adi else {
+                return
+            }
+            APICaller.shared.sepeteYemekKaydet(yemekAdi: yemekName, yemekResimAdi: resimName , yemekFiyat: toplamFiyat, yemekSiparisAdet: scoreInt, kullaniciAdi: "hakanbaran")
+        }
+       
             self.dismiss(animated: true)
     }
 }

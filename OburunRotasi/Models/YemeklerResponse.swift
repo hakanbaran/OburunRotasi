@@ -13,8 +13,8 @@ struct YemeklerResponse: Codable {
 }
 
 struct TumYemekler: Codable {
-    let yemek_id: String?
-    let yemek_adi: String?
-    let yemek_resim_adi: String
-    let yemek_fiyat: String?
+    var yemek_id: String?
+    var yemek_adi: String?
+    var yemek_resim_adi: String
+    var yemek_fiyat: String?
 }
