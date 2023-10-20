@@ -10,6 +10,8 @@ import SDWebImage
 
 class FoodDetailsVC: UIViewController {
     
+    
+    
     let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -152,6 +154,8 @@ class FoodDetailsVC: UIViewController {
     
     var siparisSayısı = 1
     
+    var model : TumYemekler?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(hex: "#0C1B3A")
@@ -179,6 +183,8 @@ class FoodDetailsVC: UIViewController {
         plusButton.addTarget(self, action: #selector(siparisArttır), for: .touchUpInside)
         
         addBasketbutton.addTarget(self, action: #selector(addBasketButtonClicked), for: .touchUpInside)
+        
+        
     }
     
     
@@ -221,8 +227,14 @@ class FoodDetailsVC: UIViewController {
         view.endEditing(true)
     }
     @objc func siparisAzalt() {
-        siparisSayısı -= 1
-        scoreLabel.text = String(siparisSayısı)
+        
+        if siparisSayısı == 1 {
+            scoreLabel.text = String(siparisSayısı)
+        } else {
+            siparisSayısı -= 1
+            scoreLabel.text = String(siparisSayısı)
+        }
+        
     }
     @objc func siparisArttır() {
         siparisSayısı += 1
@@ -230,6 +242,21 @@ class FoodDetailsVC: UIViewController {
     }
     
     @objc func addBasketButtonClicked() {
+        
+        guard let model = model else { return }
+        
+        guard let yemekName = model.yemek_adi else { return }
+        guard let scoreInt = Int(scoreLabel.text!) else { return }
+        
+        guard let modelFiyat = Int(model.yemek_fiyat!) else { return }
+        let toplamFiyat = modelFiyat*scoreInt
+        
+        
+        
+        APICaller.shared.sepeteYemekKaydet(yemekAdi: yemekName, yemekResimAdi: model.yemek_resim_adi, yemekFiyat: toplamFiyat, yemekSiparisAdet: scoreInt, kullaniciAdi: "hakanbaran")
+        
+        
+        
             self.dismiss(animated: true)
     }
 }

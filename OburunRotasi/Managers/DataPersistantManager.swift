@@ -17,7 +17,7 @@ class DataPersistantManager {
     let context = appDelegate.persistentContainer.viewContext
     
     
-    func addFavorite(model: Yemekler, completion: @escaping(Result<Void, Error>) ->()) {
+    func addFavorite(model: TumYemekler, completion: @escaping(Result<Void, Error>) ->()) {
         
         guard let id = model.yemek_id else {
             return

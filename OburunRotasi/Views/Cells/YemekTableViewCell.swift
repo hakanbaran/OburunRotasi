@@ -7,13 +7,14 @@
 
 import UIKit
 import SDWebImage
+import FittedSheets
+
 
 
 class YemekTableViewCell: UITableViewCell {
     
-    
-
     static let identifier = "YemekTableViewCell"
+    
     
     let categories: [Category] = [
         Category(id: "1", name1: "Türk Mutfağı", name2: "İçecekler", name3: "Köfte"),
@@ -31,8 +32,7 @@ class YemekTableViewCell: UITableViewCell {
         Category(id: "13", name1: "Türk Mutfağı", name2: "Tatlılar", name3: ""),
         Category(id: "14", name1: "Tatlılar", name2: "Dünyadan", name3: ""),
     ]
-    
-    var model : Yemekler?
+    var model : TumYemekler?
     
     var favoriYemekler = [YemeklerData]()
     
@@ -112,16 +112,24 @@ class YemekTableViewCell: UITableViewCell {
         return button
     }()
     
-    public let sepetButton: UIButton = {
+    public let ucretsiz: UIButton = {
         let button = UIButton()
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(systemName: "plus.circle")
-        imageView.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
-        button.addSubview(imageView)
-        button.tintColor = UIColor(hex: "#248CB3")
+        button.setTitle("Ücretsiz Gönderim", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 12, weight: .regular)
+        button.titleLabel?.textAlignment = .center
+        button.backgroundColor = UIColor(hex: "#248CB3")
+        
+        button.layer.shadowColor = UIColor.white.cgColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 0)
+        button.layer.shadowOpacity = 0.5
+        button.layer.shadowRadius = 3
+        button.layer.cornerRadius = 15
+        button.layer.borderWidth = 0.2
+        button.layer.borderColor = UIColor.darkGray.cgColor
         return button
     }()
+    
+   
    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -136,13 +144,15 @@ class YemekTableViewCell: UITableViewCell {
         cellView.addSubview(yemekKategori3)
         cellView.addSubview(yemekFiyatLabel)
         cellView.addSubview(favoriButton)
-        cellView.addSubview(sepetButton)
+        cellView.addSubview(ucretsiz)
         
         favoriButton.addTarget(self, action: #selector(favoriteButtonClicked), for: .touchUpInside)
         imageHeartView.contentMode = .scaleAspectFit
         imageHeartView.image = UIImage(systemName: "heart")
         imageHeartView.frame = CGRect(x: 0, y: 0, width: 35, height: 30)
         favoriButton.addSubview(imageHeartView)
+        
+        
         
     }
     
@@ -163,7 +173,8 @@ class YemekTableViewCell: UITableViewCell {
         yemekKategori3.frame = CGRect(x: width/20+width/4+width/6+width/50+width/6+width/50+width/40, y: (height-height/1.44-width/20)/2+height/4, width: width/6, height: height/8)
         yemekFiyatLabel.frame = CGRect(x: width/10+width/4, y: (height-height/1.44-width/20)/2+height/1.44-height/8, width: width/6, height: height/8)
         favoriButton.frame = CGRect(x: width-width/10-width/8, y:  (height-height/1.44-width/20)/2, width: width/8, height: width/8)
-        sepetButton.frame = CGRect(x: width-width/10-width/8, y: (height-height/1.44-width/20)/2+height/1.44-height/5, width: width/10, height: width/10)
+        ucretsiz.frame = CGRect(x: width-width/10-width/8-width/5.3, y: (height-height/1.44-width/20)/2+height/1.44-height/7, width: width/3.5, height: width/20)
+        ucretsiz.layer.cornerRadius = ucretsiz.frame.height/2
     }
     
     @objc func favoriteButtonClicked() {
@@ -171,15 +182,12 @@ class YemekTableViewCell: UITableViewCell {
         guard let model = model  else {
             return
         }
-        
         guard let id = model.yemek_id else {
             return
         }
-        
         DataPersistantManager.shared.filterFavorite(id: id) { result in
             switch result {
             case .success(let filterFood):
-                
                 if filterFood.isEmpty {
                     self.imageHeartView.image = UIImage(systemName: "heart.fill")
                     DataPersistantManager.shared.addFavorite(model: model) { result in
@@ -190,15 +198,14 @@ class YemekTableViewCell: UITableViewCell {
                             print(error.localizedDescription)
                         }
                     }
-                } else {
-                    
                 }
-                
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
+    
+    
 
     
     func setCategoryLabels(for categoryId: String?) {

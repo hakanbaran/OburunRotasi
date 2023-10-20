@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct YemeklerRsponse: Codable {
-    let yemekler: [Yemekler]?
+struct YemeklerResponse: Codable {
+    let yemekler: [TumYemekler]?
     let success: Int?
 }
 
-struct Yemekler: Codable {
+struct TumYemekler: Codable {
     let yemek_id: String?
     let yemek_adi: String?
     let yemek_resim_adi: String

@@ -30,7 +30,7 @@ class HomeVC: UIViewController {
     }()
     
     private var headerView: HeroHeaderUIView?
-    var yemeklerListesi = [Yemekler]()
+    var yemeklerListesi = [TumYemekler]()
     
     
     
@@ -134,8 +134,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
         if let fiyat = model.yemek_fiyat {
             vc.priceLabel.text = "\(fiyat) ₺"
         }
-        
-        
+        vc.model = model
         let sheetController = SheetViewController(controller: vc, sizes: [.intrinsic])
         self.present(sheetController, animated: true)
     }
@@ -154,7 +153,6 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
         navigationController?.navigationBar.alpha = alpha
     }
 }
-
 
 
 
