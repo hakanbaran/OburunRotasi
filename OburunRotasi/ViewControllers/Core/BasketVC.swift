@@ -116,18 +116,13 @@ extension BasketVC: UITableViewDelegate, UITableViewDataSource {
         
         
         let resimAdi = model.yemek_resim_adi
-        
         let url = URL(string: "http://kasimadalan.pe.hu/yemekler/resimler/\(resimAdi)")
         cell.yemekResim.sd_setImage(with: url)
         cell.yemekIsimLabel.text = model.yemek_adi
-        
         cell.yemekAdetLabel.text = "Adet: \(model.yemek_siparis_adet)"
-        
         cell.model = model
         cell.configureFiyat()
-        
         cell.yemekIsimLabel.text = model.yemek_adi
-        
         cell.yemekToplamFiyatLabel.text = "Toplam: \(model.yemek_fiyat) ₺"
         return cell
     }
@@ -142,7 +137,16 @@ extension BasketVC: UITableViewDelegate, UITableViewDataSource {
         case .delete:
             APICaller.shared.sepettekiYekeleriSil(sepet_yemek_id: id , kullanici_adi: "hakanbaran")
             self.sepetYemekler.remove(at: indexPath.row)
-            tableView.reloadData()
+            var toplam = 0
+            for yemek in self.sepetYemekler {
+                guard let fiyatInt = Int(yemek.yemek_fiyat) else {
+                    return
+                }
+                toplam += fiyatInt
+            }
+            self.tableView.reloadData()
+            self.toplamLabel.text = "Toplam: \(toplam) ₺"
+            
         default:
             break;
         }

@@ -32,8 +32,6 @@ class HomeVC: UIViewController {
     private var headerView: HeroHeaderUIView?
     var yemeklerListesi = [TumYemekler]()
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)

@@ -98,7 +98,7 @@ class FoodDetailsVC: UIViewController {
         textView.textColor = .secondaryLabel
         textView.layer.borderWidth = 0.5
         textView.layer.cornerRadius = 15
-        textView.layer.borderColor = UIColor.lightGray.cgColor
+        textView.layer.borderColor = UIColor.white.cgColor
         textView.font = .systemFont(ofSize: 18, weight: .regular)
         textView.contentInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         textView.backgroundColor = UIColor(hex: "#162544")
@@ -161,6 +161,8 @@ class FoodDetailsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(hex: "#0C1B3A")
+        
+        overrideUserInterfaceStyle = .dark
         
         textView.delegate = self
         stackView.addArrangedSubview(detailView)
@@ -276,7 +278,7 @@ extension FoodDetailsVC: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == "Sipariş Notunu Giriniz..." {
             textView.text = ""
-            textView.textColor = UIColor.lightGray
+            textView.textColor = UIColor.white
         }
     }
 }
