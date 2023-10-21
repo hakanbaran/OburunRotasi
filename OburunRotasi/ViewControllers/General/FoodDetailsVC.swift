@@ -10,7 +10,7 @@ import SDWebImage
 
 class FoodDetailsVC: UIViewController {
     
-    
+    static let shared = FoodDetailsVC()
     
     let stackView: UIStackView = {
         let stackView = UIStackView()
@@ -157,6 +157,7 @@ class FoodDetailsVC: UIViewController {
     var model : TumYemekler?
     var model2 : YemeklerData?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(hex: "#0C1B3A")
@@ -255,9 +256,7 @@ class FoodDetailsVC: UIViewController {
                 switch result {
                     
                 case .success(let sepettekiler):
-                    
                     if !sepettekiler.contains(where: { $0.yemek_adi == model.yemek_adi }) {
-                        
                         APICaller.shared.sepeteYemekKaydet(yemekAdi: yemekName, yemekResimAdi: model.yemek_resim_adi, yemekFiyat: toplamFiyat, yemekSiparisAdet: scoreInt, kullaniciAdi: "hakanbaran2")
                         self.dismiss(animated: true)
                     } else {
@@ -289,7 +288,6 @@ class FoodDetailsVC: UIViewController {
                         self.alertMessage()
                     }
                 case .failure(let error):
-                    
                     debugPrint(error.localizedDescription)
                 }
             }
@@ -303,14 +301,9 @@ class FoodDetailsVC: UIViewController {
         let geriButton = UIAlertAction(title: "Alışverişe Devam Et!", style: .cancel) { _ in
             self.dismiss(animated: true)
         }
-        
         alert.addAction(geriButton)
-        
         self.present(alert, animated: true)
-        
-        
     }
-    
 }
 
 extension FoodDetailsVC: UITextViewDelegate {

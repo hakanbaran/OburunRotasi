@@ -10,6 +10,8 @@ import SDWebImage
 
 class BasketVC: UIViewController  {
     
+   
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = UIColor(hex: "#0C1B3A")
@@ -20,8 +22,7 @@ class BasketVC: UIViewController  {
     
     private let toplamLabel: UILabel = {
         let label = UILabel()
-//        label.textAlignment = .right
-        label.text = "Toplam: 187 ₺"
+        label.text = "Toplam: 0 ₺"
         label.font = .systemFont(ofSize: 28, weight: .semibold)
         
         return label
@@ -57,6 +58,8 @@ class BasketVC: UIViewController  {
         
         view.addSubview(toplamLabel)
         view.addSubview(sepetOnayButton)
+        
+        
         
         
     }
@@ -159,3 +162,5 @@ extension BasketVC: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
+
+
