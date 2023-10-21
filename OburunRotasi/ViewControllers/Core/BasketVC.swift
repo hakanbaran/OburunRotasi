@@ -44,7 +44,7 @@ class BasketVC: UIViewController  {
     var sepetYemekler = [SepetYemek]()
     
     
-    
+    private var viewModel = SepetViewModel()
     
 
     override func viewDidLoad() {
@@ -63,6 +63,8 @@ class BasketVC: UIViewController  {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        bindViewModel()
         
         
         APICaller.shared.sepettekiYemekleriCek(kullaniciAdi: "hakanbaran") { result in
@@ -96,6 +98,16 @@ class BasketVC: UIViewController  {
         sepetOnayButton.layer.cornerRadius = sepetOnayButton.frame.height/2
     }
     
+    private func bindViewModel() {
+            viewModel.loadSepetUrunler { [weak self] in
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                    let totalAmount = self?.viewModel.calculateTotalAmount() ?? 0
+                    self?.toplamLabel.text = "Toplam: \(totalAmount) ₺"
+                }
+            }
+        }
+    
 
 }
 
@@ -105,22 +117,21 @@ extension BasketVC: UITableViewDelegate, UITableViewDataSource {
         return view.frame.height/6
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sepetYemekler.count
+        return viewModel.numberOfSepetUrunler
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: BasketTableViewCell.identifier, for: indexPath) as? BasketTableViewCell else {
             return UITableViewCell()
         }
-        let model = sepetYemekler[indexPath.row]
-        
+        let model = viewModel.sepetUrun(at: indexPath.row)
+        cell.model = model
         
         let resimAdi = model.yemek_resim_adi
         let url = URL(string: "http://kasimadalan.pe.hu/yemekler/resimler/\(resimAdi)")
         cell.yemekResim.sd_setImage(with: url)
         cell.yemekIsimLabel.text = model.yemek_adi
         cell.yemekAdetLabel.text = "Adet: \(model.yemek_siparis_adet)"
-        cell.model = model
         cell.configureFiyat()
         cell.yemekIsimLabel.text = model.yemek_adi
         cell.yemekToplamFiyatLabel.text = "Toplam: \(model.yemek_fiyat) ₺"
@@ -131,11 +142,14 @@ extension BasketVC: UITableViewDelegate, UITableViewDataSource {
         
         let model = sepetYemekler[indexPath.row]
         
-        let id = Int(model.sepet_yemek_id)!
         
         switch editingStyle {
         case .delete:
-            APICaller.shared.sepettekiYekeleriSil(sepet_yemek_id: id , kullanici_adi: "hakanbaran")
+            viewModel.removeFromSepet(at: indexPath.row) {
+                tableView.reloadData()
+                let totalAmount = self.viewModel.calculateTotalAmount()
+                self.toplamLabel.text = "Toplam: \(totalAmount) ₺"
+            }
             self.sepetYemekler.remove(at: indexPath.row)
             var toplam = 0
             for yemek in self.sepetYemekler {

@@ -22,7 +22,7 @@ class FavoriteVC: UIViewController {
         return tableView
     }()
     
-    var favoriYemekler = [YemeklerData]()
+    private var viewModel = FavoritesViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,25 +34,13 @@ class FavoriteVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchingFood()
+        viewModel.loadFavoriteYemekler()
         tableView.reloadData()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
-    }
-    
-    
-    func fetchingFood() {
-        DataPersistantManager.shared.fetchingFavorite { result in
-            switch result {
-            case .success(let yemeklerDatas):
-                self.favoriYemekler = yemeklerDatas
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
     }
 }
 
@@ -63,14 +51,14 @@ extension FavoriteVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return favoriYemekler.count
+        return viewModel.numberOfFavorites
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: YemekTableViewCell.identifier, for: indexPath) as? YemekTableViewCell else {
             return UITableViewCell()
         }
-        let model = favoriYemekler[indexPath.row]
+        let model = viewModel.favorite(at: indexPath.row)
         
         
         
@@ -104,8 +92,7 @@ extension FavoriteVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
-            DataPersistantManager.shared.deleteFavorite(model: self.favoriYemekler[indexPath.row])
-            self.favoriYemekler.remove(at: indexPath.row)
+            viewModel.removeFromFavorites(at: indexPath.row)
             tableView.reloadData()
         default:
             break;
@@ -114,12 +101,11 @@ extension FavoriteVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let model = favoriYemekler[indexPath.row]
+        let model = viewModel.favorite(at: indexPath.row)
         
         guard let resimName = model.yemek_resim_adi else {
             return
         }
-        
         let url = URL(string: "http://kasimadalan.pe.hu/yemekler/resimler/\(resimName)")
         let vc = FoodDetailsVC()
         vc.imageView.sd_setImage(with: url)

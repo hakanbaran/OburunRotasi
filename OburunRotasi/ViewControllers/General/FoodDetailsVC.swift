@@ -155,7 +155,6 @@ class FoodDetailsVC: UIViewController {
     var siparisSayısı = 1
     
     var model : TumYemekler?
-    
     var model2 : YemeklerData?
     
     override func viewDidLoad() {
@@ -187,8 +186,6 @@ class FoodDetailsVC: UIViewController {
         plusButton.addTarget(self, action: #selector(siparisArttır), for: .touchUpInside)
         
         addBasketbutton.addTarget(self, action: #selector(addBasketButtonClicked), for: .touchUpInside)
-        
-        
     }
     
     
@@ -246,7 +243,6 @@ class FoodDetailsVC: UIViewController {
     }
     
     @objc func addBasketButtonClicked() {
-        
         if let model = model {
             guard let yemekName = model.yemek_adi else { return }
             guard let scoreInt = Int(scoreLabel.text!) else { return }
@@ -269,7 +265,6 @@ class FoodDetailsVC: UIViewController {
             }
             APICaller.shared.sepeteYemekKaydet(yemekAdi: yemekName, yemekResimAdi: resimName , yemekFiyat: toplamFiyat, yemekSiparisAdet: scoreInt, kullaniciAdi: "hakanbaran")
         }
-       
             self.dismiss(animated: true)
     }
 }
