@@ -194,6 +194,7 @@ class YemekTableViewCell: UITableViewCell {
             case .success(let filterFood):
                 if filterFood.isEmpty {
                     self.imageHeartView.image = UIImage(systemName: "heart.fill")
+                    self.iconAnimation()
                     DataPersistantManager.shared.addFavorite(model: model) { result in
                         switch result {
                         case .success(let yemek):
@@ -207,6 +208,7 @@ class YemekTableViewCell: UITableViewCell {
                         return
                     }
                     self.imageHeartView.image = UIImage(systemName: "heart")
+                    self.iconAnimation()
                     DataPersistantManager.shared.deleteFavoriToButton(id: id)
                 }
             case .failure(let error):
@@ -238,6 +240,20 @@ class YemekTableViewCell: UITableViewCell {
             yemekFiyatLabel.text = "\(fiyat) ₺"
         }
     }
+    
+    func iconAnimation() {
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseInOut, animations: {
+                self.favoriButton.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            }) { (completed) in
+                // Animasyon tamamlandığında yapılacak işlem
+                if completed {
+                    UIView.animate(withDuration: 0.5, animations: {
+                        self.favoriButton.transform = .identity // Eski boyutuna geri dön
+                    })
+                }
+            }
+    }
+
 }
 
 

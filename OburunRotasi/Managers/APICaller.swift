@@ -8,19 +8,6 @@
 import Foundation
 import Alamofire
 
-struct SepetYemek2: Codable {
-    let kullanici_adi: String
-    let sepet_yemek_id: Int
-    let yemek_adi: String
-    let yemek_fiyat: Int
-    let yemek_resim_adi: String
-    let yemek_siparis_adet: Int
-}
-
-struct SepetVeri2: Codable {
-    let sepet_yemekler: [SepetYemek2]
-    let success: Int
-}
 
 class APICaller {
     static let shared = APICaller()
@@ -83,12 +70,13 @@ class APICaller {
             if let data = response.data {
                 do {
                     let sepetYemekler = try JSONDecoder().decode(SepetYemekler.self, from: data)
+                    
                     guard let yemekler = sepetYemekler.sepet_yemekler else {
                         return
                     }
                     completion(.success(yemekler))
                 } catch {
-                    print("JSON çözümleme hatası: \(error)")
+                    debugPrint("JSON çözümleme hatası: \(error)")
                 }
             } else {
                 print("Veri alınamadı")

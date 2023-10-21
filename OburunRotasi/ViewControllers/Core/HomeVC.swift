@@ -116,7 +116,8 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.alpha = alpha
     }
-}
+    
+    }
 
 
 extension HomeVC: UISearchBarDelegate {

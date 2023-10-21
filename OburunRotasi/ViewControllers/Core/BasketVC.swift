@@ -63,11 +63,8 @@ class BasketVC: UIViewController  {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         bindViewModel()
-        
-        
-        APICaller.shared.sepettekiYemekleriCek(kullaniciAdi: "hakanbaran") { result in
+        APICaller.shared.sepettekiYemekleriCek(kullaniciAdi: "hakanbaran2") { result in
             switch result {
             case .success(let yemekler):
                 self.sepetYemekler = yemekler

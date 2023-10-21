@@ -243,6 +243,7 @@ class FoodDetailsVC: UIViewController {
     }
     
     @objc func addBasketButtonClicked() {
+        
         if let model = model {
             guard let yemekName = model.yemek_adi else { return }
             guard let scoreInt = Int(scoreLabel.text!) else { return }
@@ -250,16 +251,17 @@ class FoodDetailsVC: UIViewController {
             guard let modelFiyat = Int(model.yemek_fiyat!) else { return }
             let toplamFiyat = modelFiyat*scoreInt
             
-            APICaller.shared.sepettekiYemekleriCek(kullaniciAdi: "hakanbaran") { result in
+            APICaller.shared.sepettekiYemekleriCek(kullaniciAdi: "hakanbaran2") { result in
                 switch result {
                     
                 case .success(let sepettekiler):
                     
                     if !sepettekiler.contains(where: { $0.yemek_adi == model.yemek_adi }) {
                         
-                        APICaller.shared.sepeteYemekKaydet(yemekAdi: yemekName, yemekResimAdi: model.yemek_resim_adi, yemekFiyat: toplamFiyat, yemekSiparisAdet: scoreInt, kullaniciAdi: "hakanbaran")
+                        APICaller.shared.sepeteYemekKaydet(yemekAdi: yemekName, yemekResimAdi: model.yemek_resim_adi, yemekFiyat: toplamFiyat, yemekSiparisAdet: scoreInt, kullaniciAdi: "hakanbaran2")
+                        self.dismiss(animated: true)
                     } else {
-                        print("VAARRR")
+                        self.alertMessage()
                     }
                 case .failure(let error):
                     debugPrint(error.localizedDescription)
@@ -276,10 +278,26 @@ class FoodDetailsVC: UIViewController {
             guard let resimName = model2.yemek_resim_adi else {
                 return
             }
-            APICaller.shared.sepeteYemekKaydet(yemekAdi: yemekName, yemekResimAdi: resimName , yemekFiyat: toplamFiyat, yemekSiparisAdet: scoreInt, kullaniciAdi: "hakanbaran")
+            APICaller.shared.sepeteYemekKaydet(yemekAdi: yemekName, yemekResimAdi: resimName , yemekFiyat: toplamFiyat, yemekSiparisAdet: scoreInt, kullaniciAdi: "hakanbaran2")
         }
-            self.dismiss(animated: true)
+            
     }
+    
+    func alertMessage() {
+        
+        let alert = UIAlertController(title: "Mevcut Yemek!", message: "Bu yemek zaten sepete eklendi!!", preferredStyle: .alert)
+        
+        let geriButton = UIAlertAction(title: "Alışverişe Devam Et!", style: .cancel) { _ in
+            self.dismiss(animated: true)
+        }
+        
+        alert.addAction(geriButton)
+        
+        self.present(alert, animated: true)
+        
+        
+    }
+    
 }
 
 extension FoodDetailsVC: UITextViewDelegate {

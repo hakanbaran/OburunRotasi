@@ -23,7 +23,6 @@ class SearchVC: UIViewController {
         tableView.backgroundColor = UIColor(hex: "#0C1B3A")
         tableView.separatorStyle = .none
         tableView.register(YemekTableViewCell.self, forCellReuseIdentifier: YemekTableViewCell.identifier)
-        tableView.isHidden = true
         return tableView
     }()
     
@@ -51,15 +50,17 @@ class SearchVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         searcBar.delegate = self
-        
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeKeyboard))
-        view.addGestureRecognizer(tapGestureRecognizer)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         bindViewModel()
+    }
+    
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        view.endEditing(true)
     }
     
     override func viewDidLayoutSubviews() {
@@ -70,14 +71,9 @@ class SearchVC: UIViewController {
         
         searcBar.frame = CGRect(x: width/20, y: width/10, width: width-width/10, height: width/8)
         tableView.frame = CGRect(x: 0, y: width/10+width/8+width/10, width: width, height: height-width/10+width/8+width/10)
-        
         noResultLabel.frame = CGRect(x: 0, y: height/2-height/16, width: width, height: height/8)
-        
     }
     
-    @objc func closeKeyboard() {
-        view.endEditing(true)
-    }
     
     
     private func bindViewModel() {
@@ -122,20 +118,22 @@ extension SearchVC: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        self.view.endEditing(true)
         
         let model = viewModel.bulunanYemekler[indexPath.row]
         
         
-                let url = URL(string: "http://kasimadalan.pe.hu/yemekler/resimler/\(model.yemek_resim_adi)")
-                let vc = FoodDetailsVC()
-                vc.imageView.sd_setImage(with: url)
-                vc.nameLabel.text = model.yemek_adi
-                if let fiyat = model.yemek_fiyat {
-                    vc.priceLabel.text = "\(fiyat) ₺"
-                }
-                vc.model = model
-                let sheetController = SheetViewController(controller: vc, sizes: [.intrinsic])
-                self.present(sheetController, animated: true)
+        
+        let url = URL(string: "http://kasimadalan.pe.hu/yemekler/resimler/\(model.yemek_resim_adi)")
+        let vc = FoodDetailsVC()
+        vc.imageView.sd_setImage(with: url)
+        vc.nameLabel.text = model.yemek_adi
+        if let fiyat = model.yemek_fiyat {
+            vc.priceLabel.text = "\(fiyat) ₺"
+        }
+        vc.model = model
+        let sheetController = SheetViewController(controller: vc, sizes: [.intrinsic])
+        self.present(sheetController, animated: true)
     }
 }
 
@@ -155,6 +153,8 @@ extension SearchVC: UISearchBarDelegate {
             tableView.isHidden = false
             noResultLabel.isHidden = true
         }
+        
+        
             tableView.reloadData()
         }
 }
