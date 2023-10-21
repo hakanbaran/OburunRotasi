@@ -91,14 +91,6 @@ class DataPersistantManager {
             } else {
                 print("Silinecek veri bulunamadı.")
             }
-                    
-            
-            
         }
-        
-        
     }
-    
-    
-    
 }

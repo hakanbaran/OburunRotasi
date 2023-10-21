@@ -1,5 +1,5 @@
 //
-//  HomeViewModel.swift
+//  SearchBarViewModel.swift
 //  OburunRotasi
 //
 //  Created by Hakan Baran on 21.10.2023.
@@ -7,9 +7,11 @@
 
 import Foundation
 
-class HomeViewModel {
+
+class SearcheViewModel {
     
     var yemeklerListesi: [TumYemekler] = []
+    var bulunanYemekler = [TumYemekler]()
     
     var numberOfYemekler: Int {
             return yemeklerListesi.count
@@ -46,5 +48,3 @@ class HomeViewModel {
             }
         }
 }
-
-

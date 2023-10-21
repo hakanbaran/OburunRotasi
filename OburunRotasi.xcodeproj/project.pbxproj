@@ -28,6 +28,9 @@
 		D42E665E2AE33E8B00606DDB /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42E665D2AE33E8B00606DDB /* CategoryModel.swift */; };
 		D42E66602AE3439A00606DDB /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42E665F2AE3439A00606DDB /* FavoritesViewModel.swift */; };
 		D42E66622AE3489C00606DDB /* BasketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42E66612AE3489C00606DDB /* BasketViewModel.swift */; };
+		D42E66642AE3CA6C00606DDB /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42E66632AE3CA6C00606DDB /* SearchVC.swift */; };
+		D42E66662AE3CC2900606DDB /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42E66652AE3CC2900606DDB /* SearchViewModel.swift */; };
+		D42E66682AE3E17F00606DDB /* CategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42E66672AE3E17F00606DDB /* CategoryVC.swift */; };
 		D451A27B2AD71496002BD65B /* YemeklerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451A27A2AD71496002BD65B /* YemeklerResponse.swift */; };
 		D451A27D2AD71C2C002BD65B /* SepetKayitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451A27C2AD71C2C002BD65B /* SepetKayitModel.swift */; };
 		D451A27F2AD83746002BD65B /* FavoriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451A27E2AD83746002BD65B /* FavoriteVC.swift */; };
@@ -65,6 +68,9 @@
 		D42E665D2AE33E8B00606DDB /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		D42E665F2AE3439A00606DDB /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		D42E66612AE3489C00606DDB /* BasketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewModel.swift; sourceTree = "<group>"; };
+		D42E66632AE3CA6C00606DDB /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
+		D42E66652AE3CC2900606DDB /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		D42E66672AE3E17F00606DDB /* CategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryVC.swift; sourceTree = "<group>"; };
 		D451A27A2AD71496002BD65B /* YemeklerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YemeklerResponse.swift; sourceTree = "<group>"; };
 		D451A27C2AD71C2C002BD65B /* SepetKayitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SepetKayitModel.swift; sourceTree = "<group>"; };
 		D451A27E2AD83746002BD65B /* FavoriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVC.swift; sourceTree = "<group>"; };
@@ -191,6 +197,8 @@
 			isa = PBXGroup;
 			children = (
 				D42E66412ADF3ED200606DDB /* FoodDetailsVC.swift */,
+				D42E66632AE3CA6C00606DDB /* SearchVC.swift */,
+				D42E66672AE3E17F00606DDB /* CategoryVC.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -201,6 +209,7 @@
 				D42E665B2AE33E1400606DDB /* HomeViewModel.swift */,
 				D42E665F2AE3439A00606DDB /* FavoritesViewModel.swift */,
 				D42E66612AE3489C00606DDB /* BasketViewModel.swift */,
+				D42E66652AE3CC2900606DDB /* SearchViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -326,12 +335,15 @@
 				D41E372F2AD6A35E00E4CCCC /* AppDelegate.swift in Sources */,
 				D4769DE42ADB51AD0007AC00 /* FoodHeaderCollectionReusableView.swift in Sources */,
 				D42E664F2AE16D4F00606DDB /* StringExtension.swift in Sources */,
+				D42E66642AE3CA6C00606DDB /* SearchVC.swift in Sources */,
 				D4769DDF2ADAF7C70007AC00 /* KategoriCollectionCell.swift in Sources */,
+				D42E66662AE3CC2900606DDB /* SearchViewModel.swift in Sources */,
 				D451A2812AD8375A002BD65B /* ProfileVC.swift in Sources */,
 				D451A27D2AD71C2C002BD65B /* SepetKayitModel.swift in Sources */,
 				D42E665E2AE33E8B00606DDB /* CategoryModel.swift in Sources */,
 				D42E66622AE3489C00606DDB /* BasketViewModel.swift in Sources */,
 				D451A27F2AD83746002BD65B /* FavoriteVC.swift in Sources */,
+				D42E66682AE3E17F00606DDB /* CategoryVC.swift in Sources */,
 				D4769DDD2ADACC830007AC00 /* IndirimCollectionCell.swift in Sources */,
 				D4769DD02AD928AB0007AC00 /* YemekTableViewCell.swift in Sources */,
 				D42E664D2AE124C200606DDB /* YemeklerCoreData.xcdatamodeld in Sources */,

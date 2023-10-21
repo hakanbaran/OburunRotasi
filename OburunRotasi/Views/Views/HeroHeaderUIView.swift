@@ -20,7 +20,7 @@ enum BrowseSectionType {
     }
 }
 
-class HeroHeaderUIView: UIView {
+class HeroHeaderUIView: UIView, UISearchBarDelegate {
     
     private let navigationBarView: UIView = {
         let view = UIView()
@@ -58,7 +58,7 @@ class HeroHeaderUIView: UIView {
         return label
     }()
     
-    private let searcBar: UISearchBar = {
+    let searcBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.placeholder = "Yemek Arama..."
         searchBar.searchBarStyle = .minimal
@@ -229,28 +229,16 @@ class HeroHeaderUIView: UIView {
             return section
         }
     }
-    
-    
-    
-    
 }
-
-extension HeroHeaderUIView: UISearchBarDelegate {
-    
-}
-
 
 extension HeroHeaderUIView: UICollectionViewDelegate, UICollectionViewDataSource {
     
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         let type = sections[section]
         switch type {
         case .indirim:
             return 3
         case .kategori:
-            
             return 6
         }
     }
@@ -262,27 +250,19 @@ extension HeroHeaderUIView: UICollectionViewDelegate, UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let type = sections[indexPath.section]
-        
         switch type {
-            
         case .indirim:
-            
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IndirimCollectionCell.identifier, for: indexPath) as? IndirimCollectionCell else {
                 return UICollectionViewCell()
             }
             cell.imageView.image = indirimArray[indexPath.item]
-            
             return cell
-            
         case .kategori:
-            
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: KategoriCollectionCell.identifier, for: indexPath) as? KategoriCollectionCell else {
                 return UICollectionViewCell()
             }
-            
             cell.imageView.image = kategoriImageArray[indexPath.item]
             cell.label.text = kategoriNameArray[indexPath.item]
-            
             return cell
         }
     }
@@ -291,7 +271,6 @@ extension HeroHeaderUIView: UICollectionViewDelegate, UICollectionViewDataSource
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: FoodHeaderCollectionReusableView.identifier, for: indexPath) as? FoodHeaderCollectionReusableView, kind == UICollectionView.elementKindSectionHeader else {
             return UICollectionReusableView()
         }
-        
         let section = indexPath.section
         let title = sections[section].title
         header.configure(with: title)
@@ -302,4 +281,6 @@ extension HeroHeaderUIView: UICollectionViewDelegate, UICollectionViewDataSource
             scrollView.contentOffset.y = 0
         }
 }
+
+
 

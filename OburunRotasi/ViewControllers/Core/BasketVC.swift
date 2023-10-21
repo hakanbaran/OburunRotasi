@@ -43,12 +43,12 @@ class BasketVC: UIViewController  {
     
     var sepetYemekler = [SepetYemek]()
     
-    
     private var viewModel = SepetViewModel()
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Sepetim"
         
         view.addSubview(tableView)
         
@@ -107,8 +107,6 @@ class BasketVC: UIViewController  {
                 }
             }
         }
-    
-
 }
 
 extension BasketVC: UITableViewDelegate, UITableViewDataSource {
@@ -139,9 +137,6 @@ extension BasketVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
-        let model = sepetYemekler[indexPath.row]
-        
         
         switch editingStyle {
         case .delete:

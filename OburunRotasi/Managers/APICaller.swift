@@ -30,7 +30,6 @@ class APICaller {
     
     private let kontrolURLString = "http://kasimadalan.pe.hu/yemekler/kontrol.php"
 
-    
     public func tumYemekler(completion: @escaping (Result<[TumYemekler], Error>) -> ()) {
         guard let yemekAPIURL = URL(string: "http://kasimadalan.pe.hu/yemekler/tumYemekleriGetir.php") else {
             return
@@ -49,6 +48,8 @@ class APICaller {
             }
         }
     }
+    
+    
     
     func sepeteYemekKaydet(yemekAdi: String, yemekResimAdi: String, yemekFiyat: Int, yemekSiparisAdet: Int, kullaniciAdi: String) {
         
