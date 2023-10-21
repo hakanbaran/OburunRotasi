@@ -68,9 +68,13 @@ extension CategoryVC: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
+        
+        
         guard let model = kategoriYemekler?[indexPath.row] else {
             return UITableViewCell()
         }
+        
+        
                 cell.model = model
                 cell.apply()
         
@@ -85,7 +89,10 @@ extension CategoryVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let model = viewModel.yemeklerListesi[indexPath.row]
+        guard let model = kategoriYemekler?[indexPath.row] else {
+            return
+        }
+        
         let url = URL(string: "http://kasimadalan.pe.hu/yemekler/resimler/\(model.yemek_resim_adi)")
         let vc = FoodDetailsVC()
         vc.imageView.sd_setImage(with: url)

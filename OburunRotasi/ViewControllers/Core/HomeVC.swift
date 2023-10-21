@@ -23,8 +23,6 @@ class HomeVC: UIViewController {
     
     private var viewModel = HomeViewModel()
     
-    var isSearchVCPresented = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
@@ -34,7 +32,6 @@ class HomeVC: UIViewController {
         headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.frame.width/1.1))
         headerView?.delegate = self
         tableView.tableHeaderView = headerView
-        
         headerView?.searcBar.delegate = self
     }
     
