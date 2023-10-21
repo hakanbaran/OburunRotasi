@@ -21,7 +21,6 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate {
         let basketVC = BasketVC()
         let profileVC = ProfileVC()
         
-        
         view.backgroundColor = UIColor(hex: "#162544")
         
         homeVC.navigationItem.largeTitleDisplayMode = .always
@@ -38,11 +37,7 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate {
         navFavorite.tabBarItem = UITabBarItem(title: "Favorite", image: UIImage(systemName: "person"), tag: 2)
         navBasket.tabBarItem = UITabBarItem(title: "Basket", image: UIImage(systemName: "person"), tag: 3)
         navProfile.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), tag: 4)
-        
-        
         setViewControllers([navHome,navFavorite,navBasket, navProfile], animated: true)
-        
-        
     }
 }
 

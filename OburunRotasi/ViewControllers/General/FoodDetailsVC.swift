@@ -250,8 +250,21 @@ class FoodDetailsVC: UIViewController {
             guard let modelFiyat = Int(model.yemek_fiyat!) else { return }
             let toplamFiyat = modelFiyat*scoreInt
             
-            APICaller.shared.sepeteYemekKaydet(yemekAdi: yemekName, yemekResimAdi: model.yemek_resim_adi, yemekFiyat: toplamFiyat, yemekSiparisAdet: scoreInt, kullaniciAdi: "hakanbaran")
-            
+            APICaller.shared.sepettekiYemekleriCek(kullaniciAdi: "hakanbaran") { result in
+                switch result {
+                    
+                case .success(let sepettekiler):
+                    
+                    if !sepettekiler.contains(where: { $0.yemek_adi == model.yemek_adi }) {
+                        
+                        APICaller.shared.sepeteYemekKaydet(yemekAdi: yemekName, yemekResimAdi: model.yemek_resim_adi, yemekFiyat: toplamFiyat, yemekSiparisAdet: scoreInt, kullaniciAdi: "hakanbaran")
+                    } else {
+                        print("VAARRR")
+                    }
+                case .failure(let error):
+                    debugPrint(error.localizedDescription)
+                }
+            }
         } else if let model2 = model2 {
             
             guard let yemekName = model2.yemek_adi else { return }

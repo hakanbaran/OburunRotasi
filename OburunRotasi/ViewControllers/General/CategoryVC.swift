@@ -32,7 +32,6 @@ class CategoryVC: UIViewController {
         return tableView
     }()
     
-    
     private var viewModel = CategoryViewModel()
     
     override func viewDidLoad() {
@@ -86,23 +85,16 @@ extension CategoryVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
         let model = viewModel.yemeklerListesi[indexPath.row]
-        
-        
-                let url = URL(string: "http://kasimadalan.pe.hu/yemekler/resimler/\(model.yemek_resim_adi)")
-                let vc = FoodDetailsVC()
-                vc.imageView.sd_setImage(with: url)
-                vc.nameLabel.text = model.yemek_adi
-                if let fiyat = model.yemek_fiyat {
-                    vc.priceLabel.text = "\(fiyat) ₺"
-                }
-                vc.model = model
-                let sheetController = SheetViewController(controller: vc, sizes: [.intrinsic])
-                self.present(sheetController, animated: true)
+        let url = URL(string: "http://kasimadalan.pe.hu/yemekler/resimler/\(model.yemek_resim_adi)")
+        let vc = FoodDetailsVC()
+        vc.imageView.sd_setImage(with: url)
+        vc.nameLabel.text = model.yemek_adi
+        if let fiyat = model.yemek_fiyat {
+            vc.priceLabel.text = "\(fiyat) ₺"
+        }
+        vc.model = model
+        let sheetController = SheetViewController(controller: vc, sizes: [.intrinsic])
+        self.present(sheetController, animated: true)
     }
-    
-    
-    
-    
 }

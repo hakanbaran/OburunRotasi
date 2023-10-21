@@ -22,14 +22,11 @@ struct SepetVeri2: Codable {
     let success: Int
 }
 
-
-
 class APICaller {
-    
     static let shared = APICaller()
     
     private let kontrolURLString = "http://kasimadalan.pe.hu/yemekler/kontrol.php"
-
+    
     public func tumYemekler(completion: @escaping (Result<[TumYemekler], Error>) -> ()) {
         guard let yemekAPIURL = URL(string: "http://kasimadalan.pe.hu/yemekler/tumYemekleriGetir.php") else {
             return
@@ -49,8 +46,6 @@ class APICaller {
         }
     }
     
-    
-    
     func sepeteYemekKaydet(yemekAdi: String, yemekResimAdi: String, yemekFiyat: Int, yemekSiparisAdet: Int, kullaniciAdi: String) {
         
         guard let url = URL(string: "http://kasimadalan.pe.hu/yemekler/sepeteYemekEkle.php") else {
@@ -63,7 +58,6 @@ class APICaller {
             "yemek_siparis_adet": yemekSiparisAdet,
             "kullanici_adi": kullaniciAdi
         ]
-        
         AF.request(url, method: .post, parameters: parameters).response { response in
                 
             if let data = response.data {
@@ -77,7 +71,6 @@ class APICaller {
         }
     }
     
-    
     func sepettekiYemekleriCek(kullaniciAdi: String, completion: @escaping (Result<[SepetYemek], Error>) -> ()) {
         
         guard let url = URL(string: "http://kasimadalan.pe.hu/yemekler/sepettekiYemekleriGetir.php") else {
@@ -86,7 +79,6 @@ class APICaller {
         let parameters: [String: Any] = [
             "kullanici_adi": kullaniciAdi
         ]
-        
         AF.request(url, method: .post, parameters: parameters).response { response in
             if let data = response.data {
                 do {
