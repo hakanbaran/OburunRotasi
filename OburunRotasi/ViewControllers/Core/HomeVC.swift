@@ -32,6 +32,7 @@ class HomeVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.frame.width/1.1))
+        headerView?.delegate = self
         tableView.tableHeaderView = headerView
         
         headerView?.searcBar.delegate = self
@@ -126,5 +127,35 @@ extension HomeVC: UISearchBarDelegate {
         
         searchBar.text = ""
         searchBar.resignFirstResponder()
+    }
+}
+extension HomeVC: HeroHeaderDelegate {
+    func didSelectCategory(_ category: String) {
+        
+        if category == "Türk Mutfağı" {
+            let filteredYemekler = viewModel.yemeklerListesi.filter { $0.yemek_id == "1" || $0.yemek_id == "2" || $0.yemek_id == "6" || $0.yemek_id == "13"}
+            let vc = CategoryVC(kategoriYemekler: filteredYemekler, titleCategory: category)
+            navigationController?.pushViewController(vc, animated: true)
+        } else if category == "Tatlılar" {
+            let filteredYemekler = viewModel.yemeklerListesi.filter { $0.yemek_id == "2" || $0.yemek_id == "6" || $0.yemek_id == "13" || $0.yemek_id == "14" }
+            let vc = CategoryVC(kategoriYemekler: filteredYemekler, titleCategory: category)
+            navigationController?.pushViewController(vc, animated: true)
+        } else if category == "İçecekler" {
+            let filteredYemekler = viewModel.yemeklerListesi.filter { $0.yemek_id == "1" || $0.yemek_id == "3" || $0.yemek_id == "7" || $0.yemek_id == "12" || $0.yemek_id == "13" }
+            let vc = CategoryVC(kategoriYemekler: filteredYemekler, titleCategory: category)
+            navigationController?.pushViewController(vc, animated: true)
+        } else if category == "Dünyadan" {
+            let filteredYemekler = viewModel.yemeklerListesi.filter { $0.yemek_id == "4" || $0.yemek_id == "5" || $0.yemek_id == "7" || $0.yemek_id == "9" || $0.yemek_id == "10" || $0.yemek_id == "11" || $0.yemek_id == "14" }
+            let vc = CategoryVC(kategoriYemekler: filteredYemekler, titleCategory: category)
+            navigationController?.pushViewController(vc, animated: true)
+        } else if category == "Tavuk/Balık" {
+            let filteredYemekler = viewModel.yemeklerListesi.filter { $0.yemek_id == "4" || $0.yemek_id == "5" }
+            let vc = CategoryVC(kategoriYemekler: filteredYemekler, titleCategory: category)
+            navigationController?.pushViewController(vc, animated: true)
+        } else if category == "Köfte" {
+            let filteredYemekler = viewModel.yemeklerListesi.filter { $0.yemek_id == "8" || $0.yemek_id == "12" || $0.yemek_id == "6" }
+            let vc = CategoryVC(kategoriYemekler: filteredYemekler, titleCategory: category)
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }

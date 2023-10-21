@@ -20,6 +20,10 @@ enum BrowseSectionType {
     }
 }
 
+protocol HeroHeaderDelegate: AnyObject {
+    func didSelectCategory(_ category: String)
+}
+
 class HeroHeaderUIView: UIView, UISearchBarDelegate {
     
     private let navigationBarView: UIView = {
@@ -87,6 +91,8 @@ class HeroHeaderUIView: UIView, UISearchBarDelegate {
     
     var indirimArray = [UIImage]()
     
+    weak var delegate: HeroHeaderDelegate?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -133,7 +139,7 @@ class HeroHeaderUIView: UIView, UISearchBarDelegate {
         
         guard let icecek = UIImage(named: "icecek") else { return }
         kategoriImageArray.append(icecek)
-        let icecekNAme = "İçeekler"
+        let icecekNAme = "İçecekler"
         kategoriNameArray.append(icecekNAme)
         
         guard let dunya = UIImage(named: "dunya_mutfak") else { return }
@@ -264,6 +270,21 @@ extension HeroHeaderUIView: UICollectionViewDelegate, UICollectionViewDataSource
             cell.imageView.image = kategoriImageArray[indexPath.item]
             cell.label.text = kategoriNameArray[indexPath.item]
             return cell
+        }
+        
+        
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let type = sections[indexPath.section]
+        switch type {
+        case .kategori:
+            // Burada kategoriye tıklanınca açılacak view controller'ı başlatmalısınız.
+            let selectedKategori = kategoriNameArray[indexPath.item]
+                    delegate?.didSelectCategory(selectedKategori)
+        default:
+            break
         }
     }
     
