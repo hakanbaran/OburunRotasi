@@ -278,9 +278,22 @@ class FoodDetailsVC: UIViewController {
             guard let resimName = model2.yemek_resim_adi else {
                 return
             }
-            APICaller.shared.sepeteYemekKaydet(yemekAdi: yemekName, yemekResimAdi: resimName , yemekFiyat: toplamFiyat, yemekSiparisAdet: scoreInt, kullaniciAdi: "hakanbaran2")
-        }
             
+            APICaller.shared.sepettekiYemekleriCek(kullaniciAdi: "hakanbaran2") { result in
+                switch result {
+                case .success(let sepettekiler):
+                    if !sepettekiler.contains(where: { $0.yemek_adi == self.model2?.yemek_adi }) {
+                        APICaller.shared.sepeteYemekKaydet(yemekAdi: yemekName, yemekResimAdi: resimName , yemekFiyat: toplamFiyat, yemekSiparisAdet: scoreInt, kullaniciAdi: "hakanbaran2")
+                        self.dismiss(animated: true)
+                    } else {
+                        self.alertMessage()
+                    }
+                case .failure(let error):
+                    
+                    debugPrint(error.localizedDescription)
+                }
+            }
+        }
     }
     
     func alertMessage() {
