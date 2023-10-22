@@ -58,10 +58,6 @@ class BasketVC: UIViewController  {
         
         view.addSubview(toplamLabel)
         view.addSubview(sepetOnayButton)
-        
-        
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -112,28 +108,46 @@ class BasketVC: UIViewController  {
 extension BasketVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view.frame.height/6
+        
+        if indexPath.row == 0 {
+            return 0
+        } else {
+            return view.frame.height/6
+        }
+        
+        
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfSepetUrunler
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: BasketTableViewCell.identifier, for: indexPath) as? BasketTableViewCell else {
-            return UITableViewCell()
-        }
-        let model = viewModel.sepetUrun(at: indexPath.row)
-        cell.model = model
         
-        let resimAdi = model.yemek_resim_adi
-        let url = URL(string: "http://kasimadalan.pe.hu/yemekler/resimler/\(resimAdi)")
-        cell.yemekResim.sd_setImage(with: url)
-        cell.yemekIsimLabel.text = model.yemek_adi
-        cell.yemekAdetLabel.text = "Adet: \(model.yemek_siparis_adet)"
-        cell.configureFiyat()
-        cell.yemekIsimLabel.text = model.yemek_adi
-        cell.yemekToplamFiyatLabel.text = "Toplam: \(model.yemek_fiyat) ₺"
-        return cell
+        
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: BasketTableViewCell.identifier, for: indexPath) as? BasketTableViewCell else {
+                    return UITableViewCell()
+                }
+        
+        if indexPath.row == 0 {
+            
+            cell.isHidden = true
+        }
+        
+        
+                let model = viewModel.sepetUrun(at: indexPath.row)
+                cell.model = model
+                let resimAdi = model.yemek_resim_adi
+                let url = URL(string: "http://kasimadalan.pe.hu/yemekler/resimler/\(resimAdi)")
+                cell.yemekResim.sd_setImage(with: url)
+                cell.yemekIsimLabel.text = model.yemek_adi
+                cell.yemekAdetLabel.text = "Adet: \(model.yemek_siparis_adet)"
+                cell.configureFiyat()
+                cell.yemekIsimLabel.text = model.yemek_adi
+                cell.yemekToplamFiyatLabel.text = "Toplam: \(model.yemek_fiyat) ₺"
+        
+                return cell
+            
+        
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

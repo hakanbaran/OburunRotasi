@@ -38,6 +38,9 @@ class HomeVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         bindViewModel()
+        
+//        APICaller.shared.sepeteYemekKaydet(yemekAdi: "1", yemekResimAdi: "1", yemekFiyat: 0, yemekSiparisAdet: 1, kullaniciAdi: "hakanbaran2")
+        
     }
     
     override func viewDidLayoutSubviews() {

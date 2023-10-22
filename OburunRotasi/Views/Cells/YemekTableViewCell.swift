@@ -151,9 +151,6 @@ class YemekTableViewCell: UITableViewCell {
         imageHeartView.image = UIImage(systemName: "heart")
         imageHeartView.frame = CGRect(x: 0, y: 0, width: 35, height: 30)
         favoriButton.addSubview(imageHeartView)
-        
-        
-        
     }
     
     required init?(coder: NSCoder) {
@@ -187,7 +184,6 @@ class YemekTableViewCell: UITableViewCell {
         guard let id = model.yemek_id else {
             return
         }
-        print(id)
         
         DataPersistantManager.shared.filterFavorite(id: id) { result in
             switch result {

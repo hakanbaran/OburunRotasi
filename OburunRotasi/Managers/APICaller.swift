@@ -76,9 +76,7 @@ class APICaller {
                     }
                     completion(.success(yemekler))
                 } catch {
-                    
                     debugPrint("JSON çözümleme hatası: \(error)")
-                    
                 }
             } else {
                 print("Veri alınamadı")
