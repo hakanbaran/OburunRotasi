@@ -99,10 +99,8 @@ class BasketVC: UIViewController  {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
         let width = view.frame.width
         let height = view.frame.height
-        
         tableView.frame = CGRect(x: 0, y: 0, width: width, height: height-height/5)
         toplamLabel.frame = CGRect(x: width/20, y: height-height/5+width/20, width: width, height: width/8)
         sepetOnayButton.frame = CGRect(x: width-width/2.8-width/20, y: height-height/5+width/20, width: width/2.8, height: width/8)
@@ -112,19 +110,18 @@ class BasketVC: UIViewController  {
     
     @objc func sepetOnayButtonClicked() {
         let vc = PaymentVC()
-        
         navigationController?.pushViewController(vc, animated: true)
     }
     
     private func bindViewModel() {
-            viewModel.loadSepetUrunler { [weak self] in
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                    let totalAmount = self?.viewModel.calculateTotalAmount() ?? 0
-                    self?.toplamLabel.text = "Toplam: \(totalAmount) ₺"
-                }
+        viewModel.loadSepetUrunler { [weak self] in
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+                let totalAmount = self?.viewModel.calculateTotalAmount() ?? 0
+                self?.toplamLabel.text = "Toplam: \(totalAmount) ₺"
             }
         }
+    }
 }
 
 extension BasketVC: UITableViewDelegate, UITableViewDataSource {
