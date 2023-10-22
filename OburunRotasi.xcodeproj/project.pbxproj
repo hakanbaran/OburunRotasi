@@ -32,6 +32,7 @@
 		D42E66682AE3E17F00606DDB /* CategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42E66672AE3E17F00606DDB /* CategoryVC.swift */; };
 		D42E666A2AE3E9A600606DDB /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42E66692AE3E9A600606DDB /* CategoryViewModel.swift */; };
 		D42E666D2AE49D0600606DDB /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42E666C2AE49D0600606DDB /* LaunchScreen.swift */; };
+		D42E666F2AE50F4F00606DDB /* PaymentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42E666E2AE50F4F00606DDB /* PaymentVC.swift */; };
 		D451A27B2AD71496002BD65B /* YemeklerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451A27A2AD71496002BD65B /* YemeklerResponse.swift */; };
 		D451A27D2AD71C2C002BD65B /* SepetKayitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451A27C2AD71C2C002BD65B /* SepetKayitModel.swift */; };
 		D451A27F2AD83746002BD65B /* FavoriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451A27E2AD83746002BD65B /* FavoriteVC.swift */; };
@@ -73,6 +74,7 @@
 		D42E66672AE3E17F00606DDB /* CategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryVC.swift; sourceTree = "<group>"; };
 		D42E66692AE3E9A600606DDB /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		D42E666C2AE49D0600606DDB /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
+		D42E666E2AE50F4F00606DDB /* PaymentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentVC.swift; sourceTree = "<group>"; };
 		D451A27A2AD71496002BD65B /* YemeklerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YemeklerResponse.swift; sourceTree = "<group>"; };
 		D451A27C2AD71C2C002BD65B /* SepetKayitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SepetKayitModel.swift; sourceTree = "<group>"; };
 		D451A27E2AD83746002BD65B /* FavoriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVC.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				D42E66412ADF3ED200606DDB /* FoodDetailsVC.swift */,
 				D42E66632AE3CA6C00606DDB /* SearchVC.swift */,
 				D42E66672AE3E17F00606DDB /* CategoryVC.swift */,
+				D42E666E2AE50F4F00606DDB /* PaymentVC.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				D451A2812AD8375A002BD65B /* ProfileVC.swift in Sources */,
 				D451A27D2AD71C2C002BD65B /* SepetKayitModel.swift in Sources */,
 				D42E665E2AE33E8B00606DDB /* CategoryModel.swift in Sources */,
+				D42E666F2AE50F4F00606DDB /* PaymentVC.swift in Sources */,
 				D42E66622AE3489C00606DDB /* SepetViewModel.swift in Sources */,
 				D451A27F2AD83746002BD65B /* FavoriteVC.swift in Sources */,
 				D42E66682AE3E17F00606DDB /* CategoryVC.swift in Sources */,

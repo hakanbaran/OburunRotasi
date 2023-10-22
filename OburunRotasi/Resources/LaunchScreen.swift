@@ -55,11 +55,8 @@ class LaunchScreen: UIViewController {
         configureConstraints()
     }
     
-    
-    
-    
     func iconAnimation() {
-        UIView.animate(withDuration: 2.0, delay: 0.0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 2.0, delay: 0.0, options: .curveEaseIn, animations: {
             self.animationView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
         }) { (completed) in
         }

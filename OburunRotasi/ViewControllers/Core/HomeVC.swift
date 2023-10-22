@@ -50,12 +50,12 @@ class HomeVC: UIViewController {
     
     private func bindViewModel() {
             viewModel.downloadTumYemekler { [weak self] result in
-                guard let self = self else { return }
+                guard let strongSelf = self else { return }
                 if case .failure(let error) = result {
                     print(error.localizedDescription)
                 }
                 DispatchQueue.main.async {
-                    self.tableView.reloadData()
+                    strongSelf.tableView.reloadData()
                 }
             }
         }

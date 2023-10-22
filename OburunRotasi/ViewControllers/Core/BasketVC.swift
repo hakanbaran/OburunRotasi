@@ -71,6 +71,8 @@ class BasketVC: UIViewController  {
         view.addSubview(toplamLabel)
         view.addSubview(sepetOnayButton)
         view.addSubview(noResultLabel)
+        
+        sepetOnayButton.addTarget(self, action: #selector(sepetOnayButtonClicked), for: .touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,6 +108,12 @@ class BasketVC: UIViewController  {
         sepetOnayButton.frame = CGRect(x: width-width/2.8-width/20, y: height-height/5+width/20, width: width/2.8, height: width/8)
         sepetOnayButton.layer.cornerRadius = sepetOnayButton.frame.height/2
         noResultLabel.frame = CGRect(x: (width-width/1.2)/2, y: height/2-height/16, width: width/1.2, height: height/8)
+    }
+    
+    @objc func sepetOnayButtonClicked() {
+        let vc = PaymentVC()
+        
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func bindViewModel() {
