@@ -42,6 +42,16 @@ class BasketVC: UIViewController  {
         return button
     }()
     
+    private let noResultLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Sepetinizde Yemek Bulunmuyor."
+        label.textAlignment = .center
+        label.numberOfLines = 2
+        label.font = .systemFont(ofSize: 28, weight: .semibold)
+        label.textAlignment = .center
+        return label
+    }()
+    
     var sepetYemekler = [SepetYemek]()
     
     private var viewModel = SepetViewModel()
@@ -51,6 +61,8 @@ class BasketVC: UIViewController  {
         super.viewDidLoad()
         title = "Sepetim"
         
+        view.backgroundColor = UIColor(hex: "#0C1B3A")
+        
         view.addSubview(tableView)
         
         tableView.delegate = self
@@ -58,6 +70,7 @@ class BasketVC: UIViewController  {
         
         view.addSubview(toplamLabel)
         view.addSubview(sepetOnayButton)
+        view.addSubview(noResultLabel)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,6 +105,7 @@ class BasketVC: UIViewController  {
         toplamLabel.frame = CGRect(x: width/20, y: height-height/5+width/20, width: width, height: width/8)
         sepetOnayButton.frame = CGRect(x: width-width/2.8-width/20, y: height-height/5+width/20, width: width/2.8, height: width/8)
         sepetOnayButton.layer.cornerRadius = sepetOnayButton.frame.height/2
+        noResultLabel.frame = CGRect(x: (width-width/1.2)/2, y: height/2-height/16, width: width/1.2, height: height/8)
     }
     
     private func bindViewModel() {
@@ -124,30 +138,27 @@ extension BasketVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: BasketTableViewCell.identifier, for: indexPath) as? BasketTableViewCell else {
-                    return UITableViewCell()
-                }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: BasketTableViewCell.identifier, for: indexPath) as? BasketTableViewCell else {
+            return UITableViewCell()
+        }
         
         if indexPath.row == 0 {
             
             cell.isHidden = true
         }
+        let model = viewModel.sepetUrun(at: indexPath.row)
+        cell.model = model
+        let resimAdi = model.yemek_resim_adi
+        let url = URL(string: "http://kasimadalan.pe.hu/yemekler/resimler/\(resimAdi)")
+        cell.yemekResim.sd_setImage(with: url)
+        cell.yemekIsimLabel.text = model.yemek_adi
+        cell.yemekAdetLabel.text = "Adet: \(model.yemek_siparis_adet)"
+        cell.configureFiyat()
+        cell.yemekIsimLabel.text = model.yemek_adi
+        cell.yemekToplamFiyatLabel.text = "Toplam: \(model.yemek_fiyat) ₺"
         
-        
-                let model = viewModel.sepetUrun(at: indexPath.row)
-                cell.model = model
-                let resimAdi = model.yemek_resim_adi
-                let url = URL(string: "http://kasimadalan.pe.hu/yemekler/resimler/\(resimAdi)")
-                cell.yemekResim.sd_setImage(with: url)
-                cell.yemekIsimLabel.text = model.yemek_adi
-                cell.yemekAdetLabel.text = "Adet: \(model.yemek_siparis_adet)"
-                cell.configureFiyat()
-                cell.yemekIsimLabel.text = model.yemek_adi
-                cell.yemekToplamFiyatLabel.text = "Toplam: \(model.yemek_fiyat) ₺"
-        
-                return cell
-            
-        
+        tableViewKontrol()
+        return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -173,6 +184,17 @@ extension BasketVC: UITableViewDelegate, UITableViewDataSource {
         default:
             break;
         }
+    }
+    
+    func tableViewKontrol() {
+        if viewModel.numberOfSepetUrunler < 2 {
+            noResultLabel.isHidden = false
+            tableView.isHidden = true
+        } else {
+            tableView.isHidden = false
+            noResultLabel.isHidden = true
+        }
+        
     }
     
 }

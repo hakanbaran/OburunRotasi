@@ -32,25 +32,26 @@ class CategoryVC: UIViewController {
         return tableView
     }()
     
+    
     private var viewModel = CategoryViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        overrideUserInterfaceStyle = .dark
+        navigationController?.navigationBar.backgroundColor = .clear
+        view.backgroundColor = UIColor(hex: "#0C1B3A")
+        navigationController?.navigationBar.tintColor = .white
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        
         title = self.titleCategory
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        tableView.frame = view.bounds
+        tableView.frame = CGRect(x: 0, y: view.frame.height/9, width: view.frame.width, height: view.frame.height-view.frame.height/9)
     }
-    
-
 }
 
 extension CategoryVC: UITableViewDelegate, UITableViewDataSource {
@@ -80,7 +81,6 @@ extension CategoryVC: UITableViewDelegate, UITableViewDataSource {
                     }
                 }
         return cell
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -36,7 +36,6 @@ class SepetViewModel {
         let id = Int(model.sepet_yemek_id)!
         APICaller.shared.sepettekiYekeleriSil(sepet_yemek_id: id, kullanici_adi: "hakanbaran2")
             self.sepetUrunler.remove(at: index)
-        
     }
     
     func calculateTotalAmount() -> Int {
