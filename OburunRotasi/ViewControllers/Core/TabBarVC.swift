@@ -14,6 +14,8 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         overrideUserInterfaceStyle = .dark
         
         
@@ -40,9 +42,6 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate {
         navProfile.tabBarItem = UITabBarItem(title: "Ayarlar", image: UIImage(systemName: "gear"), tag: 4)
         setViewControllers([navHome,navFavorite,navBasket, navProfile], animated: true)
     }
-    
-    
-    
 }
 
 

@@ -33,6 +33,8 @@
 		D42E666A2AE3E9A600606DDB /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42E66692AE3E9A600606DDB /* CategoryViewModel.swift */; };
 		D42E666D2AE49D0600606DDB /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42E666C2AE49D0600606DDB /* LaunchScreen.swift */; };
 		D42E666F2AE50F4F00606DDB /* PaymentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42E666E2AE50F4F00606DDB /* PaymentVC.swift */; };
+		D42E66712AE551A400606DDB /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42E66702AE551A400606DDB /* OnboardingVC.swift */; };
+		D42E66732AE553D200606DDB /* Deneme1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42E66722AE553D200606DDB /* Deneme1.swift */; };
 		D451A27B2AD71496002BD65B /* YemeklerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451A27A2AD71496002BD65B /* YemeklerResponse.swift */; };
 		D451A27D2AD71C2C002BD65B /* SepetKayitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451A27C2AD71C2C002BD65B /* SepetKayitModel.swift */; };
 		D451A27F2AD83746002BD65B /* FavoriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451A27E2AD83746002BD65B /* FavoriteVC.swift */; };
@@ -75,6 +77,8 @@
 		D42E66692AE3E9A600606DDB /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		D42E666C2AE49D0600606DDB /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 		D42E666E2AE50F4F00606DDB /* PaymentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentVC.swift; sourceTree = "<group>"; };
+		D42E66702AE551A400606DDB /* OnboardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
+		D42E66722AE553D200606DDB /* Deneme1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deneme1.swift; sourceTree = "<group>"; };
 		D451A27A2AD71496002BD65B /* YemeklerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YemeklerResponse.swift; sourceTree = "<group>"; };
 		D451A27C2AD71C2C002BD65B /* SepetKayitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SepetKayitModel.swift; sourceTree = "<group>"; };
 		D451A27E2AD83746002BD65B /* FavoriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVC.swift; sourceTree = "<group>"; };
@@ -142,6 +146,7 @@
 				D41E372E2AD6A35E00E4CCCC /* AppDelegate.swift */,
 				D41E37302AD6A35E00E4CCCC /* SceneDelegate.swift */,
 				D42E666C2AE49D0600606DDB /* LaunchScreen.swift */,
+				D42E66702AE551A400606DDB /* OnboardingVC.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -204,6 +209,7 @@
 				D42E66632AE3CA6C00606DDB /* SearchVC.swift */,
 				D42E66672AE3E17F00606DDB /* CategoryVC.swift */,
 				D42E666E2AE50F4F00606DDB /* PaymentVC.swift */,
+				D42E66722AE553D200606DDB /* Deneme1.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -333,6 +339,7 @@
 				D4769DE62ADB51F70007AC00 /* UIViewExtension.swift in Sources */,
 				D4FF51EA2ADD51E7006A8E10 /* HeroHeaderUIView.swift in Sources */,
 				D42E666D2AE49D0600606DDB /* LaunchScreen.swift in Sources */,
+				D42E66732AE553D200606DDB /* Deneme1.swift in Sources */,
 				D451A27B2AD71496002BD65B /* YemeklerResponse.swift in Sources */,
 				D42E665C2AE33E1400606DDB /* HomeViewModel.swift in Sources */,
 				D42E66422ADF3ED200606DDB /* FoodDetailsVC.swift in Sources */,
@@ -357,6 +364,7 @@
 				D41FEE892AD6BDF100B1F284 /* TabBarVC.swift in Sources */,
 				D42E66532AE1F58B00606DDB /* SepetVeriModel.swift in Sources */,
 				D4769DD22AD928EF0007AC00 /* UIColorExtension.swift in Sources */,
+				D42E66712AE551A400606DDB /* OnboardingVC.swift in Sources */,
 				D42E66602AE3439A00606DDB /* FavoritesViewModel.swift in Sources */,
 				D41FEE8C2AD6D10900B1F284 /* APICaller.swift in Sources */,
 				D42E66512AE1EE9500606DDB /* BasketTableViewCell.swift in Sources */,

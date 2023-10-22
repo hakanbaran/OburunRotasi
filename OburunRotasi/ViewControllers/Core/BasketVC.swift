@@ -75,6 +75,28 @@ class BasketVC: UIViewController  {
         sepetOnayButton.addTarget(self, action: #selector(sepetOnayButtonClicked), for: .touchUpInside)
     }
     
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        bindViewModel()
+//        APICaller.shared.sepettekiYemekleriCek(kullaniciAdi: "hakanbaran2") { result in
+//            switch result {
+//            case .success(let yemekler):
+//                self.sepetYemekler = yemekler
+//                var toplam = 0
+//                for yemek in self.sepetYemekler {
+//                    guard let fiyatInt = Int(yemek.yemek_fiyat) else {
+//                        return
+//                    }
+//                    toplam += fiyatInt
+//                }
+//                self.tableView.reloadData()
+//                self.toplamLabel.text = "Toplam: \(toplam) ₺"
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
+//    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         bindViewModel()
@@ -84,13 +106,14 @@ class BasketVC: UIViewController  {
                 self.sepetYemekler = yemekler
                 var toplam = 0
                 for yemek in self.sepetYemekler {
-                    guard let fiyatInt = Int(yemek.yemek_fiyat) else {
-                        return
+                    if let fiyatInt = Int(yemek.yemek_fiyat) {
+                        toplam += fiyatInt
+                        
+                        print("**** \(toplam)")
                     }
-                    toplam += fiyatInt
                 }
-                self.tableView.reloadData()
                 self.toplamLabel.text = "Toplam: \(toplam) ₺"
+                self.tableView.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -117,8 +140,6 @@ class BasketVC: UIViewController  {
         viewModel.loadSepetUrunler { [weak self] in
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
-                let totalAmount = self?.viewModel.calculateTotalAmount() ?? 0
-                self?.toplamLabel.text = "Toplam: \(totalAmount) ₺"
             }
         }
     }
