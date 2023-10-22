@@ -20,10 +20,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = TabBarVC()
+        window?.rootViewController = LaunchScreen()
         window?.makeKeyAndVisible()
-        
-        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.window?.rootViewController  = TabBarVC()
+            self.window?.makeKeyAndVisible()
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

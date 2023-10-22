@@ -30,13 +30,12 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate {
         
         btnMiddle.frame = CGRect(x: Int(self.tabBar.bounds.width)/2 - 30, y: -20, width: 60, height: 60)
         
-//        self.tabBar.addSubview(btnMiddle)
-//        setupCustomTabBar()
-        
         let homeVC = HomeVC()
         let favoriteVC = FavoriteVC()
         let basketVC = BasketVC()
         let profileVC = ProfileVC()
+        
+//        setupCustomTabBar()
         
         view.backgroundColor = UIColor(hex: "#162544")
         
@@ -71,11 +70,6 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate {
             self.tabBar.itemSpacing = 180
             self.tabBar.tintColor = UIColor(hex: "#fe989b")
         }
-    
-    
-    
-    
-    
     
     func getPathForTabBar() -> UIBezierPath {
             let frameWidth = self.tabBar.bounds.width

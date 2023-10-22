@@ -258,7 +258,7 @@ class FoodDetailsVC: UIViewController {
                 case .success(let sepettekiler):
                     if !sepettekiler.contains(where: { $0.yemek_adi == model.yemek_adi }) {
                         APICaller.shared.sepeteYemekKaydet(yemekAdi: yemekName, yemekResimAdi: model.yemek_resim_adi, yemekFiyat: toplamFiyat, yemekSiparisAdet: scoreInt, kullaniciAdi: "hakanbaran2")
-                        self.dismiss(animated: true)
+                        self.iconAnimation()
                     } else {
                         self.alertMessage()
                     }
@@ -283,7 +283,7 @@ class FoodDetailsVC: UIViewController {
                 case .success(let sepettekiler):
                     if !sepettekiler.contains(where: { $0.yemek_adi == self.model2?.yemek_adi }) {
                         APICaller.shared.sepeteYemekKaydet(yemekAdi: yemekName, yemekResimAdi: resimName , yemekFiyat: toplamFiyat, yemekSiparisAdet: scoreInt, kullaniciAdi: "hakanbaran2")
-                        self.dismiss(animated: true)
+                        self.iconAnimation()
                     } else {
                         self.alertMessage()
                     }
@@ -303,6 +303,19 @@ class FoodDetailsVC: UIViewController {
         }
         alert.addAction(geriButton)
         self.present(alert, animated: true)
+    }
+    
+    func iconAnimation() {
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseInOut, animations: {
+                self.addBasketbutton.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+            }) { (completed) in
+                if completed {
+                    UIView.animate(withDuration: 0.5, animations: {
+                        self.addBasketbutton.transform = .identity
+                        self.dismiss(animated: true)// Eski boyutuna geri dön
+                    })
+                }
+            }
     }
 }
 

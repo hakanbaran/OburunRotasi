@@ -34,22 +34,27 @@ class HeroHeaderUIView: UIView, UISearchBarDelegate {
     
     private let appIcon: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(systemName: "person")
-        image.backgroundColor = .red
+        image.image = UIImage(named: "OburunRotası")
         return image
     }()
     
     private let appTittle: UILabel = {
         let label = UILabel()
-        label.text = "Oburun Rotası"
+        label.text = "Oburun"
+        label.font = .systemFont(ofSize: 18, weight: .semibold)
+        return label
+    }()
+    
+    private let appTittle2: UILabel = {
+        let label = UILabel()
+        label.text = "Rotası"
         label.font = .systemFont(ofSize: 18, weight: .semibold)
         return label
     }()
     
     private let adressPin : UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "person")
-        imageView.backgroundColor = .red
+        imageView.image = UIImage(named: "unnamed")
         return imageView
     }()
     
@@ -100,6 +105,7 @@ class HeroHeaderUIView: UIView, UISearchBarDelegate {
         backgroundColor = UIColor(hex: "#0C1B3A")
         navigationBarView.addSubview(appIcon)
         navigationBarView.addSubview(appTittle)
+        navigationBarView.addSubview(appTittle2)
         navigationBarView.addSubview(adressPin)
         navigationBarView.addSubview(adressLabel)
         navigationBarView.addSubview(yemeklerLabel)
@@ -169,8 +175,9 @@ class HeroHeaderUIView: UIView, UISearchBarDelegate {
     
     func configureConstraints() {
         let navigationHeight = navigationBarView.frame.height
-        appIcon.frame = CGRect(x: width/20, y: -width/20, width: width/10, height: width/10)
-        appTittle.frame = CGRect(x: width/20 + width/10 + width/40, y: -width/20+navigationHeight/10 + width/80, width: width/2, height: height/20)
+        appIcon.frame = CGRect(x: width/60, y: -width/10, width: width/5, height: width/5)
+        appTittle.frame = CGRect(x: width/16 + width/10 + width/40, y: -width/20+navigationHeight/8 + width/80, width: width/2, height: height/20)
+        appTittle2.frame = CGRect(x: width/16 + width/10 + width/40, y: -width/20+navigationHeight/8 + width/80+height/20, width: width/2, height: height/20)
         adressPin.frame = CGRect(x: width-width/10-width/20, y: -width/20, width: width/10, height: width/10)
         adressLabel.frame = CGRect(x: width-width/10-width/20-width/4-width/40, y: -width/20-navigationHeight/20, width: width/4, height: navigationHeight)
 
