@@ -39,6 +39,8 @@ class HomeVC: UIViewController {
         super.viewWillAppear(animated)
         bindViewModel()
         
+        tabBarController?.tabBar.backgroundColor = .clear
+        
 //        APICaller.shared.sepeteYemekKaydet(yemekAdi: "1", yemekResimAdi: "1", yemekFiyat: 0, yemekSiparisAdet: 1, kullaniciAdi: "hakanbaran2")
         
     }
@@ -117,7 +119,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
         navigationController?.navigationBar.alpha = alpha
     }
     
-    }
+}
 
 
 extension HomeVC: UISearchBarDelegate {

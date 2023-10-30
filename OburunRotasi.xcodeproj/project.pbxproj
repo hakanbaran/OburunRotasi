@@ -47,6 +47,7 @@
 		D4769DDF2ADAF7C70007AC00 /* KategoriCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4769DDE2ADAF7C70007AC00 /* KategoriCollectionCell.swift */; };
 		D4769DE42ADB51AD0007AC00 /* FoodHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4769DE32ADB51AD0007AC00 /* FoodHeaderCollectionReusableView.swift */; };
 		D4769DE62ADB51F70007AC00 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4769DE52ADB51F70007AC00 /* UIViewExtension.swift */; };
+		D4BDE66E2AEFCEF900AAE682 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BDE66D2AEFCEF900AAE682 /* UIImageExtension.swift */; };
 		D4FF51EA2ADD51E7006A8E10 /* HeroHeaderUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF51E92ADD51E7006A8E10 /* HeroHeaderUIView.swift */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +90,7 @@
 		D4769DDE2ADAF7C70007AC00 /* KategoriCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KategoriCollectionCell.swift; sourceTree = "<group>"; };
 		D4769DE32ADB51AD0007AC00 /* FoodHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		D4769DE52ADB51F70007AC00 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		D4BDE66D2AEFCEF900AAE682 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		D4FF51E92ADD51E7006A8E10 /* HeroHeaderUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroHeaderUIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -243,6 +245,7 @@
 				D4769DD12AD928EF0007AC00 /* UIColorExtension.swift */,
 				D4769DE52ADB51F70007AC00 /* UIViewExtension.swift */,
 				D42E664E2AE16D4F00606DDB /* StringExtension.swift */,
+				D4BDE66D2AEFCEF900AAE682 /* UIImageExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				D451A27F2AD83746002BD65B /* FavoriteVC.swift in Sources */,
 				D42E66682AE3E17F00606DDB /* CategoryVC.swift in Sources */,
 				D4769DDD2ADACC830007AC00 /* IndirimCollectionCell.swift in Sources */,
+				D4BDE66E2AEFCEF900AAE682 /* UIImageExtension.swift in Sources */,
 				D4769DD02AD928AB0007AC00 /* YemekTableViewCell.swift in Sources */,
 				D42E664D2AE124C200606DDB /* YemeklerCoreData.xcdatamodeld in Sources */,
 				D41FEE892AD6BDF100B1F284 /* TabBarVC.swift in Sources */,
