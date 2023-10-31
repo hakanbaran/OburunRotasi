@@ -74,9 +74,14 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate {
         
         navHome.tabBarItem = UITabBarItem(title: "Ana Sayfa", image: UIImage(systemName: "house"), tag: 1)
         navFavorite.tabBarItem = UITabBarItem(title: "Favoriler", image: UIImage(systemName: "heart"), tag: 2)
-        navBasket.tabBarItem = UITabBarItem(title: "Sepetim", image: UIImage(systemName: "basket"), tag: 3)
-        navProfile.tabBarItem = UITabBarItem(title: "Ayarlar", image: UIImage(systemName: "gear"), tag: 4)
-        setViewControllers([navHome,navFavorite,navBasket, navProfile], animated: true)
+        navProfile.tabBarItem = UITabBarItem(title: "Ayarlar", image: UIImage(systemName: "gear"), tag: 3)
+        navBasket.tabBarItem = UITabBarItem(title: nil, image: nil, tag: 4)
+        
+        
+        
+        setViewControllers([navHome,navFavorite,navProfile,navBasket], animated: true)
+        
+       
         
     }
     
@@ -99,6 +104,7 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate {
         self.tabBar.itemPositioning = .centered
         self.tabBar.itemSpacing = 180
         self.tabBar.tintColor = UIColor.white
+        
     }
     
     func getPathForTabBar() -> UIBezierPath {
@@ -129,7 +135,6 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate {
     
     @objc func basketButtonTapped() {
         let basketVC = BasketVC()
-        
         basketVC.overrideUserInterfaceStyle = .dark
         basketVC.modalPresentationStyle = .pageSheet
         self.present(basketVC, animated: true)
@@ -137,6 +142,8 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate {
     
     
 }
+
+
 
 
 

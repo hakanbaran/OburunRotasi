@@ -14,6 +14,15 @@ class FavoriteVC: UIViewController {
     
     let context = appDelegate.persistentContainer.viewContext
     
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        
+        label.text = "Favori Yemeklerim"
+        label.font = .systemFont(ofSize: 24, weight: .semibold)
+        label.layer.zPosition = 1.0
+        return label
+    }()
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = UIColor(hex: "#0C1B3A")
@@ -26,7 +35,8 @@ class FavoriteVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Favori Yemeklerim"
+        
+        view.addSubview(titleLabel)
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
@@ -40,6 +50,11 @@ class FavoriteVC: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
+        let width = view.frame.width
+        
+        
+        titleLabel.frame = CGRect(x: width/20, y: width/20, width: width, height: width/4)
         tableView.frame = view.bounds
     }
 }

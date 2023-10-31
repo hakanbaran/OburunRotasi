@@ -59,7 +59,6 @@ class BasketVC: UIViewController  {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Sepetim"
         
         view.backgroundColor = UIColor(hex: "#0C1B3A")
         
@@ -101,9 +100,9 @@ class BasketVC: UIViewController  {
         super.viewDidLayoutSubviews()
         let width = view.frame.width
         let height = view.frame.height
-        tableView.frame = CGRect(x: 0, y: 0, width: width, height: height-height/5)
-        toplamLabel.frame = CGRect(x: width/20, y: height-height/5+width/20, width: width, height: width/8)
-        sepetOnayButton.frame = CGRect(x: width-width/2.8-width/20, y: height-height/5+width/20, width: width/2.8, height: width/8)
+        tableView.frame = CGRect(x: 0, y: 0, width: width, height: height-height/4.5)
+        toplamLabel.frame = CGRect(x: width/20, y: height-height/4.5+width/30, width: width, height: width/8)
+        sepetOnayButton.frame = CGRect(x: width-width/2.8-width/20, y: height-height/4.5+width/30, width: width/2.8, height: width/8)
         sepetOnayButton.layer.cornerRadius = sepetOnayButton.frame.height/2
         noResultLabel.frame = CGRect(x: (width-width/1.2)/2, y: height/2-height/16, width: width/1.2, height: height/8)
     }
