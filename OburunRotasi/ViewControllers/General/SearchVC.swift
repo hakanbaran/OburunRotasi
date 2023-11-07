@@ -10,6 +10,14 @@ import FittedSheets
 
 class SearchVC: UIViewController {
     
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Yemek Ara..."
+        label.font = .systemFont(ofSize: 24, weight: .semibold)
+        label.layer.zPosition = 1.0
+        return label
+    }()
+    
     let searcBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.placeholder = "Yemek Arama..."
@@ -44,6 +52,7 @@ class SearchVC: UIViewController {
         super.viewDidLoad()
         overrideUserInterfaceStyle = .dark
         view.backgroundColor = UIColor(hex: "#0C1B3A")
+        view.addSubview(titleLabel)
         view.addSubview(searcBar)
         view.addSubview(tableView)
         view.addSubview(noResultLabel)
@@ -68,9 +77,9 @@ class SearchVC: UIViewController {
         
         let width = view.frame.width
         let height = view.frame.height
-        
-        searcBar.frame = CGRect(x: width/20, y: width/10, width: width-width/10, height: width/8)
-        tableView.frame = CGRect(x: 0, y: width/10+width/8+width/10, width: width, height: height-width/10+width/8+width/10)
+        titleLabel.frame = CGRect(x: width/20, y: -width/20, width: width, height: width/4)
+        searcBar.frame = CGRect(x: width/20, y: width/10+width/20, width: width-width/10, height: width/8)
+        tableView.frame = CGRect(x: 0, y: width/10+width/8+width/10+width/20, width: width, height: height-width/10+width/8+width/10)
         noResultLabel.frame = CGRect(x: 0, y: height/2-height/16, width: width, height: height/8)
     }
     

@@ -10,6 +10,14 @@ import SDWebImage
 
 class BasketVC: UIViewController  {
     
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Sepetim"
+        label.font = .systemFont(ofSize: 24, weight: .semibold)
+        label.layer.zPosition = 1.0
+        return label
+    }()
+    
    
     
     private let tableView: UITableView = {
@@ -62,6 +70,8 @@ class BasketVC: UIViewController  {
         
         view.backgroundColor = UIColor(hex: "#0C1B3A")
         
+        view.addSubview(titleLabel)
+        
         view.addSubview(tableView)
         
         tableView.delegate = self
@@ -73,6 +83,8 @@ class BasketVC: UIViewController  {
         
         sepetOnayButton.addTarget(self, action: #selector(sepetOnayButtonClicked), for: .touchUpInside)
     }
+    
+    
 
     
     override func viewWillAppear(_ animated: Bool) {
@@ -100,6 +112,8 @@ class BasketVC: UIViewController  {
         super.viewDidLayoutSubviews()
         let width = view.frame.width
         let height = view.frame.height
+        titleLabel.frame = CGRect(x: width/20, y: width/20, width: width, height: width/4)
+        
         tableView.frame = CGRect(x: 0, y: 0, width: width, height: height-height/4.5)
         toplamLabel.frame = CGRect(x: width/20, y: height-height/4.5+width/30, width: width, height: width/8)
         sepetOnayButton.frame = CGRect(x: width-width/2.8-width/20, y: height-height/4.5+width/30, width: width/2.8, height: width/8)

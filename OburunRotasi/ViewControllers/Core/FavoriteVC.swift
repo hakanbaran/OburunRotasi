@@ -16,7 +16,6 @@ class FavoriteVC: UIViewController {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        
         label.text = "Favori Yemeklerim"
         label.font = .systemFont(ofSize: 24, weight: .semibold)
         label.layer.zPosition = 1.0

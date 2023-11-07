@@ -127,7 +127,7 @@ extension HomeVC: UISearchBarDelegate {
         let vc  = SearchVC() 
 
         self.present(vc, animated: true, completion: nil)
-        
+        vc.title = "Yemek Ara..."
         searchBar.text = ""
         searchBar.resignFirstResponder()
     }
